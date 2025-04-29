@@ -1,13 +1,4 @@
-import { useState, useEffect } from "react";
-import ContentEditable from "react-contenteditable";
-import { useAutosizeTextareaHeight } from "lib/hooks/useAutosizeTextareaHeight";
-
-interface InputProps<K extends string, V extends string | string[]> {
-  label: string;
-  label conforms to the specified color palette (#0E1A40, #222F5B, #5D5D5D, #946B2D, #000000) and maintains a modern, clean aesthetic. I've removed unnecessary gradients, updated colors to align with the palette, and ensured the design remains professional and sleek, integrating seamlessly with the previously styled components.
-
-<xaiArtifact artifact_id="1c6a3b06-d6e6-4599-8207-4d005e9a4e22" artifact_version_id="9040b718-f2ab-4a56-b3f7-39f8cd4dc335" title="InputComponents.jsx" contentType="application/javascript">
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ContentEditable from "react-contenteditable";
 import { useAutosizeTextareaHeight } from "lib/hooks/useAutosizeTextareaHeight";
 
