@@ -8,28 +8,31 @@
     @apply bg-primary inline-block rounded-lg px-6 py-2.5 font-semibold shadow-sm hover:shadow-md transition-all duration-200;
   }
   .text-primary {
-    @apply bg-gradient-to-r from-[color:var(--theme-purple)] to-[color:var(--theme-blue)] bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[color:var(--theme-dark-blue)] to-[color:var(--theme-gold)] bg-clip-text text-transparent;
   }
   .bg-primary {
-    @apply bg-gradient-to-r from-[color:var(--theme-purple)] to-[color:var(--theme-blue)] text-white;
+    @apply bg-gradient-to-r from-[color:var(--theme-dark-blue)] to-[color:var(--theme-gold)] text-white;
   }
-  .outline-theme-purple {
+  .outline-theme-dark-blue {
     @apply hover:opacity-90 hover:ring-2 focus-visible:ring-2 focus-visible:ring-offset-2 transition-all duration-200;
-    --tw-ring-color: rgba(107, 70, 193, 0.5); /* var(--theme-purple) with 50% opacity */
+    --tw-ring-color: rgba(14, 26, 64, 0.5); /* var(--theme-dark-blue) with 50% opacity */
   }
-  .outline-theme-blue {
+  .outline-theme-gold {
     @apply hover:opacity-90 hover:ring-2 focus-visible:ring-2 focus-visible:ring-offset-2 transition-all duration-200;
-    --tw-ring-color: rgba(56, 189, 248, 0.5); /* var(--theme-blue) with 50% opacity */
+    --tw-ring-color: rgba(148, 107, 45, 0.5); /* var(--theme-gold) with 50% opacity */
   }
-  .within-outline-theme-purple {
+  .within-outline-theme-dark-blue {
     @apply focus-within:ring-2 focus-within:ring-offset-2 hover:opacity-90 hover:ring-2 transition-all duration-200;
-    --tw-ring-color: rgba(107, 70, 193, 0.5); /* var(--theme-purple) with 50% opacity */
+    --tw-ring-color: rgba(14, 26, 64, 0.5); /* var(--theme-dark-blue) with 50% opacity */
   }
 }
 
 :root {
-  --theme-purple: #6b46c1;
-  --theme-blue: #38bdf8;
+  --theme-dark-blue: #0E1A40;
+  --theme-gold: #946B2D;
+  --theme-secondary-blue: #222F5B;
+  --theme-gray: #5D5D5D;
+  --theme-black: #000000;
   --top-nav-bar-height: 3.75rem;
   --resume-control-bar-height: 3.25rem;
   --resume-padding: 1.75rem;
