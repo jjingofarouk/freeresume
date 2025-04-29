@@ -4,7 +4,6 @@ import { Hero } from "home/Hero";
 import { Steps } from "home/Steps";
 import { Features } from "home/Features";
 import { Testimonials } from "home/Testimonials";
-import { QuestionsAndAnswers } from "home/QuestionsAndAnswers";
 
 export default function Home() {
   return (
@@ -35,13 +34,6 @@ export default function Home() {
         transition={{ delay: 0.6, duration: 0.5 }}
       >
         <Testimonials />
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.5 }}
-      >
-        <QuestionsAndAnswers />
       </motion.div>
     </motion.main>
   );
