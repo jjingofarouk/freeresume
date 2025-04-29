@@ -38,7 +38,7 @@ export const BaseForm = ({
   className?: string;
 }) => (
   <motion.section
-    className={`flex flex-col gap-4 rounded-xl bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 ${className}`}
+    className={`flex flex-col gap-4 rounded-xl bg-[var(--theme-dark-blue)] p-6 shadow-sm hover:shadow-md transition-all duration-300 ${className}`}
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.3 }}
@@ -96,11 +96,11 @@ export const Form = ({
             whileHover={{ scale: 1.1 }}
             transition={{ duration: 0.2 }}
           >
-            <Icon className="h-6 w-6 text-gray-700" aria-hidden="true" />
+            <Icon className="h-6 w-6 text-[var(--theme-gold)]" aria-hidden="true" />
           </motion.div>
           <input
             type="text"
-            className="w-full border-b border-transparent text-lg font-semibold text-gray-900 outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100 rounded-md px-2 py-1 transition-all duration-200"
+            className="w-full border-b border-transparent text-lg font-semibold text-[var(--theme-gray)] outline-none focus:border-[var(--theme-gold)] focus:ring-2 focus:ring-[var(--theme-gold)]/50 rounded-md px-2 py-1 transition-all duration-200"
             value={heading}
             onChange={(e) => setHeading(e.target.value)}
           />
@@ -128,12 +128,12 @@ export const Form = ({
           <motion.button
             type="button"
             onClick={() => dispatch(addSectionInForm({ form }))}
-            className="flex items-center rounded-lg bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 shadow-sm hover:bg-blue-100 transition-all duration-200"
+            className="flex items-center rounded-lg bg-[var(--theme-secondary-blue)] px-4 py-2 text-sm font-medium text-[var(--theme-gold)] shadow-sm hover:bg-[var(--theme-secondary-blue)]/80 transition-all duration-200"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
             <PlusSmallIcon
-              className="mr-1.5 h-5 w-5 text-blue-600"
+              className="mr-1.5 h-5 w-5 text-[var(--theme-gold)]"
               aria-hidden="true"
             />
             {addButtonText}
@@ -173,7 +173,7 @@ export const FormSection = ({
     <>
       {idx !== 0 && (
         <motion.div
-          className="my-4 border-t-2 border-dashed border-gray-200"
+          className="my-4 border-t-2 border-dashed border-[var(--theme-secondary-blue)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
