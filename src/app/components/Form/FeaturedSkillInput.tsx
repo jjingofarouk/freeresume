@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const INPUT_CLASS_NAME = "w-full px-4 py-3 text-sm bg-gray-50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 outline-none placeholder-gray-400";
+const INPUT_CLASS_NAME = "w-full px-4 py-3 text-sm bg-[var(--theme-black)] border border-[var(--theme-gray)] rounded-lg focus:ring-2 focus:ring-[var(--theme-gold)] focus:border-[var(--theme-gold)] transition-all duration-300 outline-none placeholder-[var(--theme-gray)]";
 
 export const FeaturedSkillInput = ({
   skill,
@@ -9,18 +9,11 @@ export const FeaturedSkillInput = ({
   setSkillRating,
   placeholder,
   className = "",
-  circleColor = "#3b82f6",
-}: {
-  skill: string;
-  rating: number;
-  setSkillRating: (skill: string, rating: number) => void;
-  placeholder: string;
-  className?: string;
-  circleColor?: string;
+  circleColor = "#946B2D",
 }) => {
   return (
     <motion.div 
-      className={`flex items-center gap-3 p-2 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 ${className}`}
+      className={`flex items-center gap-3 p-2 bg-[var(--theme-dark-blue)] rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 ${className}`}
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
@@ -30,7 +23,7 @@ export const FeaturedSkillInput = ({
         value={skill}
         placeholder={placeholder}
         onChange={(e) => setSkillRating(e.target.value, rating)}
-        className={`${INPUT_CLASS_NAME} text-gray-800`}
+        className={`${INPUT_CLASS_NAME} text-[var(--theme-gray)]`}
       />
       <CircleRating
         rating={rating}
@@ -44,14 +37,10 @@ export const FeaturedSkillInput = ({
 const CircleRating = ({
   rating,
   setRating,
-  circleColor = "#3b82f6",
-}: {
-  rating: number;
-  setRating: (rating: number) => void;
-  circleColor?: string;
+  circleColor = "#946B2D",
 }) => {
   const numCircles = 5;
-  const [hoverRating, setHoverRating] = useState<number | null>(null);
+  const [hoverRating, setHoverRating] = useState(null);
 
   return (
     <div className="flex items-center gap-1.5 p-2">
@@ -72,7 +61,7 @@ const CircleRating = ({
                 (hoverRating !== null && hoverRating >= idx + 1) ||
                 (hoverRating === null && rating >= idx + 1)
                   ? circleColor
-                  : "#e5e7eb",
+                  : "#222F5B",
             }}
             animate={{
               scale: (hoverRating !== null && hoverRating >= idx + 1) ||
