@@ -1,121 +1,87 @@
+import { motion } from "framer-motion";
 import { Link } from "components/documentation";
 
 const QAS = [
   {
-    question:
-      "Q1. What is a resume builder? Why resume builder is better than resume template doc?",
+    question: "What is a resume builder, and why is it better than a resume template?",
     answer: (
       <>
-        <p>
-          There are two ways to create a resume today. One option is to use a
-          resume template, such as an office/google doc, and customize it
-          according to your needs. The other option is to use a resume builder,
-          an online tool that allows you to input your information and
-          automatically generates a resume for you.
+        <p className="text-gray-600">
+          A resume builder is an online tool that simplifies the process of creating a resume by allowing you to input your information and automatically generating a polished, professional document. Unlike traditional resume templates (e.g., Google Docs or Word), which require manual formatting, copying, pasting, and adjusting layouts, a resume builder like FreeResume handles all formatting automatically.
         </p>
-        <p>
-          Using a resume template requires manual formatting work, like copying
-          and pasting text sections and adjusting spacing, which can be
-          time-consuming and error-prone. It is easy to run into formatting
-          issues, such as using different bullet points or font styles after
-          copying and pasting. On the other hand, a resume builder like
-          FreeResume saves time and prevents formatting mistakes by
-          automatically formatting the resume. It also offers the convenience of
-          easily changing font types or sizes with a simple click. In summary, a
-          resume builder is easier to use compared to a resume template.
+        <p className="mt-3 text-gray-600">
+          Templates often lead to inconsistencies, such as mismatched fonts or bullet styles, and can be time-consuming to customize. FreeResume saves time, prevents errors, and offers easy customization options, like changing fonts or layouts with a single click, making it a more efficient and user-friendly choice.
         </p>
       </>
     ),
   },
   {
-    question:
-      "Q2. What uniquely sets FreeResume apart from other resume builders and templates?",
+    question: "What makes FreeResume unique compared to other resume builders?",
     answer: (
       <>
-        <p>
-          Other than FreeResume, there are some great free resume builders out
-          there, e.g. <Link href="https://rxresu.me/">Reactive Resume</Link>,{" "}
-          <Link href="https://flowcv.com/">FlowCV</Link>. However, FreeResume
-          stands out with 2 distinctive features:
-        </p>{" "}
-        <p>
-          <span className="font-semibold">
-            1. FreeResume is designed specifically for the U.S. job market and
-            best practices.
+        <p className="text-gray-600">
+          FreeResume stands out among other resume builders like{" "}
+          <Link href="https://rxresu.me/" className="text-primary hover:underline">
+            Reactive Resume
+          </Link>{" "}
+          and{" "}
+          <Link href="https://flowcv.com/" className="text-primary hover:underline">
+            FlowCV
+          </Link>{" "}
+          with two key features:
+        </p>
+        <p className="mt-3">
+          <span className="font-semibold text-gray-800">
+            1. Tailored for the U.S. Job Market
           </span>
           <br />
-          Unlike other resume builders that target a global audience and offer
-          many customization options, FreeResume intentionally only offers
-          options that are aligned with U.S. best practices. For example, it
-          excludes the option to add a profile picture to avoid bias and
-          discrimination. It offers only the core sections, e.g. profile, work
-          experience, education, and skills, while omitting unnecessary sections
-          like references. Additionally, FreeResume only offers a top down
-          single column resume design as opposed to two column design, because
-          single column design works best for AST. <br />{" "}
+          FreeResume is designed specifically for U.S. hiring practices, offering only options that align with best practices. It excludes features like profile pictures to avoid bias, includes only essential sections (e.g., profile, work experience, education, skills), and uses a single-column layout optimized for Applicant Tracking Systems (ATS).
         </p>
-        <p>
-          <span className="font-semibold">
-            2. FreeResume is super privacy focus.
-          </span>{" "}
+        <p className="mt-3">
+          <span className="font-semibold text-gray-800">2. Privacy-Centric</span>
           <br />
-          While other resume builders may require email sign up and store user
-          data in their databases, FreeResume believes that resume data should
-          remain private and accessible only on user’s local machine. Therefore,
-          FreeResume doesn’t require sign up to use the app, and all inputted
-          data is stored in user’s browser that only user has access to.
+          Unlike many resume builders that require email sign-ups and store data on servers, FreeResume prioritizes privacy. It requires no account creation, and all data is stored locally in your browser, ensuring only you have access.
         </p>
       </>
     ),
   },
   {
-    question: "Q3. Who created FreeResume and why?",
+    question: "Who created FreeResume, and what inspired its development?",
     answer: (
-      <p>
+      <p className="text-gray-600">
         FreeResume was created by{" "}
-        <Link href="https://github.com/xitanggg">Xitang Zhao</Link> and designed
-        by <Link href="https://www.linkedin.com/in/imzhi">Zhigang Wen</Link> as
-        a weekend project. As immigrants to the US, we had made many mistakes
-        when creating our first resumes and applying for internships and jobs.
-        It took us a long while to learn some of the best practices. While
-        mentoring first generation students and reviewing their resumes, we
-        noticed students were making the same mistakes that we had made before.
-        This led us to think about how we can be of help with the knowledge and
-        skills we have gained. We started chatting and working over the weekends
-        that led to FreeResume, where we integrated best practices and our
-        knowledge into this resume builder. Our hope is that FreeResume can help
-        anyone to easily create a modern professional resume that follows best
-        practices and enable anyone to apply for jobs with confidence.
+        <Link href="https://github.com/xitanggg" className="text-primary hover:underline">
+          Xitang Zhao
+        </Link>{" "}
+        and designed by{" "}
+        <Link href="https://www.linkedin.com/in/imzhi" className="text-primary hover:underline">
+          Zhigang Wen
+        </Link>{" "}
+        as a passion project. As U.S. immigrants, they faced challenges crafting effective resumes for the U.S. job market. While mentoring first-generation students, they noticed similar struggles. This inspired them to build FreeResume, embedding U.S. best practices to help anyone create a professional resume with ease and confidence.
       </p>
     ),
   },
   {
-    question: "Q4. How can I support FreeResume?",
+    question: "How can I support FreeResume?",
     answer: (
       <>
-        <p>
-          The best way to support FreeResume is to share your thoughts and
-          feedback with us to help further improve it. You can send us an email
-          at{" "}
-          <Link href="mailto:hello@open-resume.com">hello@open-resume.com</Link>{" "}
+        <p className="text-gray-600">
+          Your feedback is invaluable! Share your thoughts by emailing{" "}
+          <Link href="mailto:hello@open-resume.com" className="text-primary hover:underline">
+            hello@open-resume.com
+          </Link>{" "}
           or{" "}
-          <Link href="https://github.com/xitanggg/open-resume/issues/new">
-            open an issue
+          <Link href="https://github.com/xitanggg/open-resume/issues/new" className="text-primary hover:underline">
+            opening an issue
           </Link>{" "}
-          at our Github repository. Whether you like it or not, we would love to
-          hear from you.
+          on our GitHub repository. Whether positive or critical, we want to hear from you.
         </p>
-        <p>
-          Another great way to support FreeResume is by spreading the words.
-          Share it with your friends, on social media platforms, or with your
-          school’s career center. Our goal is to reach more people who struggle
-          with creating their resume, and your word-of-mouth support would be
-          greatly appreciated. If you use Github, you can also show your support
-          by{" "}
-          <Link href="https://github.com/xitanggg/open-resume">
-            giving the project a star
+        <p className="mt-3 text-gray-600">
+          You can also support us by spreading the word. Share FreeResume with friends, on social media, or with your school’s career center. If you’re on GitHub, give our project a{" "}
+          <Link href="https://github.com/xitanggg/open-resume" className="text-primary hover:underline">
+            star
           </Link>{" "}
-          to help increase its popularity and reach.
+          to boost its visibility and help more people discover it.
         </p>
       </>
     ),
@@ -124,16 +90,28 @@ const QAS = [
 
 export const QuestionsAndAnswers = () => {
   return (
-    <section className="mx-auto max-w-3xl divide-y divide-gray-300 lg:mt-4 lg:px-2">
-      <h2 className="text-center text-3xl font-bold">Questions & Answers</h2>
-      <div className="mt-6 divide-y divide-gray-300">
-        {QAS.map(({ question, answer }) => (
-          <div key={question} className="py-6">
-            <h3 className="font-semibold leading-7">{question}</h3>
-            <div className="mt-3 grid gap-2 leading-7 text-gray-600">
-              {answer}
-            </div>
-          </div>
+    <section className="mx-auto max-w-4xl py-16 lg:py-24">
+      <motion.h2
+        className="text-center text-4xl font-bold text-gray-900 lg:text-5xl"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        Frequently Asked Questions
+      </motion.h2>
+      <div className="mt-12 space-y-8">
+        {QAS.map(({ question, answer }, index) => (
+          <motion.div
+            key={question}
+            className="rounded-xl bg-white p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-gray-100"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+          >
+            <h3 className="text-lg font-semibold text-gray-900 mb-3">{question}</h3>
+            <div className="text-base leading-relaxed">{answer}</div>
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[color:var(--theme-purple)]/5 to-[color:var(--theme-blue)]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+          </motion.div>
         ))}
       </div>
     </section>
