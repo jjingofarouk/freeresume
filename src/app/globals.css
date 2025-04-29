@@ -14,19 +14,22 @@
     @apply bg-gradient-to-r from-[color:var(--theme-purple)] to-[color:var(--theme-blue)] text-white;
   }
   .outline-theme-purple {
-    @apply hover:opacity-90 hover:ring-2 hover:ring-[color:var(--theme-purple)]/50 focus-visible:ring-2 focus-visible:ring-[color:var(--theme-purple)] focus-visible:ring-offset-2 transition-all duration-200;
+    @apply hover:opacity-90 hover:ring-2 focus-visible:ring-2 focus-visible:ring-offset-2 transition-all duration-200;
+    --tw-ring-color: rgba(107, 70, 193, 0.5); /* var(--theme-purple) with 50% opacity */
   }
   .outline-theme-blue {
-    @apply hover:opacity-90 hover:ring-2 hover:ring-[color:var(--theme-blue)]/50 focus-visible:ring-2 focus-visible:ring-[color:var(--theme-blue)] focus-visible:ring-offset-2 transition-all duration-200;
+    @apply hover:opacity-90 hover:ring-2 focus-visible:ring-2 focus-visible:ring-offset-2 transition-all duration-200;
+    --tw-ring-color: rgba(56, 189, 248, 0.5); /* var(--theme-blue) with 50% opacity */
   }
   .within-outline-theme-purple {
-    @apply focus-within:ring-2 focus-within:ring-[color:var(--theme-purple)] focus-within:ring-offset-2 hover:opacity-90 hover:ring-2 hover:ring-[color:var(--theme-purple)]/50 transition-all duration-200;
+    @apply focus-within:ring-2 focus-within:ring-offset-2 hover:opacity-90 hover:ring-2 transition-all duration-200;
+    --tw-ring-color: rgba(107, 70, 193, 0.5); /* var(--theme-purple) with 50% opacity */
   }
 }
 
 :root {
-  --theme-purple: #6b46c1; /* Modernized purple shade */
-  --theme-blue: #38bdf8; /* Modernized blue shade */
+  --theme-purple: #6b46c1;
+  --theme-blue: #38bdf8;
   --top-nav-bar-height: 3.75rem;
   --resume-control-bar-height: 3.25rem;
   --resume-padding: 1.75rem;
