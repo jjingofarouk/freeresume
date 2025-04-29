@@ -59,7 +59,7 @@ export const styles = StyleSheet.create({
   icon: {
     width: "14pt",
     height: "14pt",
-    fill: "#4b5563", // Modernized neutral color (gray-600)
-    opacity: 0.9,
+    fill: "#5D5D5D", // Matches theme-gray for a clean, neutral look
+    opacity: 0.85,
   },
 });
