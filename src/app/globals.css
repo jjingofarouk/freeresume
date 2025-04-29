@@ -5,30 +5,29 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary outline-theme-purple inline-block rounded-full px-6 py-2 font-semibold shadow-sm;
+    @apply bg-primary inline-block rounded-lg px-6 py-2.5 font-semibold shadow-sm hover:shadow-md transition-all duration-200;
   }
   .text-primary {
-    @apply bg-gradient-to-r from-[color:var(--theme-purple)] to-[color:var(--theme-blue)] bg-clip-text text-transparent !important;
+    @apply bg-gradient-to-r from-[color:var(--theme-purple)] to-[color:var(--theme-blue)] bg-clip-text text-transparent;
   }
   .bg-primary {
     @apply bg-gradient-to-r from-[color:var(--theme-purple)] to-[color:var(--theme-blue)] text-white;
   }
   .outline-theme-purple {
-    @apply hover:opacity-80 hover:outline-[color:var(--theme-purple)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--theme-purple)];
+    @apply hover:opacity-90 hover:ring-2 hover:ring-[color:var(--theme-purple)]/50 focus-visible:ring-2 focus-visible:ring-[color:var(--theme-purple)] focus-visible:ring-offset-2 transition-all duration-200;
   }
   .outline-theme-blue {
-    @apply hover:opacity-80 hover:outline-[color:var(--theme-blue)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--theme-blue)];
+    @apply hover:opacity-90 hover:ring-2 hover:ring-[color:var(--theme-blue)]/50 focus-visible:ring-2 focus-visible:ring-[color:var(--theme-blue)] focus-visible:ring-offset-2 transition-all duration-200;
   }
   .within-outline-theme-purple {
-    @apply focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[color:var(--theme-purple)] hover:opacity-80 hover:outline-[color:var(--theme-purple)];
+    @apply focus-within:ring-2 focus-within:ring-[color:var(--theme-purple)] focus-within:ring-offset-2 hover:opacity-90 hover:ring-2 hover:ring-[color:var(--theme-purple)]/50 transition-all duration-200;
   }
 }
 
 :root {
-  --theme-purple: #5d52d9;
-  --theme-blue: #4fc5eb;
-  /* Keep the below variable names in sync with CSS_VARIABLES in globals-css.ts */
-  --top-nav-bar-height: 3.5rem;
-  --resume-control-bar-height: 3rem;
-  --resume-padding: 1.5rem;
+  --theme-purple: #6b46c1; /* Modernized purple shade */
+  --theme-blue: #38bdf8; /* Modernized blue shade */
+  --top-nav-bar-height: 3.75rem;
+  --resume-control-bar-height: 3.25rem;
+  --resume-padding: 1.75rem;
 }
