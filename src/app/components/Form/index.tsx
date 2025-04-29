@@ -1,3 +1,5 @@
+import React from "react";
+import { motion } from "framer-motion";
 import { ExpanderWithHeightTransition } from "components/ExpanderWithHeightTransition";
 import {
   DeleteIconButton,
@@ -28,22 +30,21 @@ import {
   moveSectionInForm,
 } from "lib/redux/resumeSlice";
 
-/**
- * BaseForm is the bare bone form, i.e. just the outline with no title and no control buttons.
- * ProfileForm uses this to compose its outline.
- */
 export const BaseForm = ({
   children,
-  className,
+  className = "",
 }: {
   children: React.ReactNode;
   className?: string;
 }) => (
-  <section
-    className={`flex flex-col gap-3 rounded-md bg-white p-6 pt-4 shadow transition-opacity duration-200 ${className}`}
+  <motion.section
+    className={`flex flex-col gap-4 rounded-xl bg-white p-6 shadow-sm hover:shadow-md transition-all duration-300 ${className}`}
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.3 }}
   >
     {children}
-  </section>
+  </motion.section>
 );
 
 const FORM_TO_ICON: { [section in ShowForm]: typeof BuildingOfficeIcon } = {
@@ -65,8 +66,8 @@ export const Form = ({
 }) => {
   const showForm = useAppSelector(selectShowByForm(form));
   const heading = useAppSelector(selectHeadingByForm(form));
-
   const dispatch = useAppDispatch();
+
   const setShowForm = (showForm: boolean) => {
     dispatch(changeShowForm({ field: form, value: showForm }));
   };
@@ -85,21 +86,26 @@ export const Form = ({
 
   return (
     <BaseForm
-      className={`transition-opacity duration-200 ${
-        showForm ? "pb-6" : "pb-2 opacity-60"
+      className={`transition-opacity duration-300 ${
+        showForm ? "pb-6" : "pb-3 opacity-70"
       }`}
     >
       <div className="flex items-center justify-between gap-4">
-        <div className="flex grow items-center gap-2">
-          <Icon className="h-6 w-6 text-gray-600" aria-hidden="true" />
+        <div className="flex grow items-center gap-3">
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.2 }}
+          >
+            <Icon className="h-6 w-6 text-gray-700" aria-hidden="true" />
+          </motion.div>
           <input
             type="text"
-            className="block w-full border-b border-transparent text-lg font-semibold tracking-wide text-gray-900 outline-none hover:border-gray-300 hover:shadow-sm focus:border-gray-300 focus:shadow-sm"
+            className="w-full border-b border-transparent text-lg font-semibold text-gray-900 outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100 rounded-md px-2 py-1 transition-all duration-200"
             value={heading}
             onChange={(e) => setHeading(e.target.value)}
           />
         </div>
-        <div className="flex items-center gap-0.5">
+        <div className="flex items-center gap-1">
           {!isFirstForm && (
             <MoveIconButton type="up" onClick={handleMoveClick} />
           )}
@@ -113,21 +119,26 @@ export const Form = ({
         {children}
       </ExpanderWithHeightTransition>
       {showForm && addButtonText && (
-        <div className="mt-2 flex justify-end">
-          <button
+        <motion.div
+          className="mt-3 flex justify-end"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <motion.button
             type="button"
-            onClick={() => {
-              dispatch(addSectionInForm({ form }));
-            }}
-            className="flex items-center rounded-md bg-white py-2 pl-3 pr-4 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            onClick={() => dispatch(addSectionInForm({ form }))}
+            className="flex items-center rounded-lg bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 shadow-sm hover:bg-blue-100 transition-all duration-200"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <PlusSmallIcon
-              className="-ml-0.5 mr-1.5 h-5 w-5 text-gray-400"
+              className="mr-1.5 h-5 w-5 text-blue-600"
               aria-hidden="true"
             />
             {addButtonText}
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       )}
     </BaseForm>
   );
@@ -161,44 +172,57 @@ export const FormSection = ({
   return (
     <>
       {idx !== 0 && (
-        <div className="mb-4 mt-6 border-t-2 border-dotted border-gray-200" />
+        <motion.div
+          className="my-4 border-t-2 border-dashed border-gray-200"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        />
       )}
-      <div className="relative grid grid-cols-6 gap-3">
+      <div className="relative grid grid-cols-6 gap-4">
         {children}
-        <div className={`absolute right-0 top-0 flex gap-0.5 `}>
-          <div
+        <motion.div
+          className="absolute right-0 top-0 flex gap-1"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.1 }}
+        >
+          <motion.div
             className={`transition-all duration-300 ${
               showMoveUp ? "" : "invisible opacity-0"
             } ${showMoveDown ? "" : "-mr-6"}`}
+            animate={{ x: showMoveUp ? 0 : -10 }}
           >
             <MoveIconButton
               type="up"
               size="small"
               onClick={() => handleMoveClick("up")}
             />
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             className={`transition-all duration-300 ${
               showMoveDown ? "" : "invisible opacity-0"
             }`}
+            animate={{ x: showMoveDown ? 0 : -10 }}
           >
             <MoveIconButton
               type="down"
               size="small"
               onClick={() => handleMoveClick("down")}
             />
-          </div>
-          <div
+          </motion.div>
+          <motion.div
             className={`transition-all duration-300 ${
               showDelete ? "" : "invisible opacity-0"
             }`}
+            animate={{ x: showDelete ? 0 : -10 }}
           >
             <DeleteIconButton
               onClick={handleDeleteClick}
               tooltipText={deleteButtonTooltipText}
             />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </>
   );
