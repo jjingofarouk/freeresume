@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const INPUT_CLASS_NAME = "w-full px-4 py-3 text-sm bg-[var(--theme-black)] border border-[var(--theme-gray)] rounded-lg focus:ring-2 focus:ring-[var(--theme-gold)] focus:border-[var(--theme-gold)] transition-all duration-300 outline-none placeholder-[var(--theme-gray)]";
+
+interface FeaturedSkillInputProps {
+  skill: string;
+  rating: number;
+  setSkillRating: (skill: string, rating: number) => void;
+  placeholder: string;
+  className?: string;
+  circleColor?: string;
+}
 
 export const FeaturedSkillInput = ({
   skill,
@@ -10,7 +19,7 @@ export const FeaturedSkillInput = ({
   placeholder,
   className = "",
   circleColor = "#946B2D",
-}) => {
+}: FeaturedSkillInputProps) => {
   return (
     <motion.div 
       className={`flex items-center gap-3 p-2 bg-[var(--theme-dark-blue)] rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 ${className}`}
@@ -34,13 +43,19 @@ export const FeaturedSkillInput = ({
   );
 };
 
+interface CircleRatingProps {
+  rating: number;
+  setRating: (rating: number) => void;
+  circleColor?: string;
+}
+
 const CircleRating = ({
   rating,
   setRating,
   circleColor = "#946B2D",
-}) => {
+}: CircleRatingProps) => {
   const numCircles = 5;
-  const [hoverRating, setHoverRating] = useState(null);
+  const [hoverRating, setHoverRating] = useState<number | null>(null);
 
   return (
     <div className="flex items-center gap-1.5 p-2">
