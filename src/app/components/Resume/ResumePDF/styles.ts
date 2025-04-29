@@ -1,7 +1,6 @@
 import { StyleSheet } from "@react-pdf/renderer";
 
-// Tailwindcss Spacing Design System: https://tailwindcss.com/docs/theme#spacing
-// It is converted from rem to pt (1rem = 12pt) since https://react-pdf.org/styling only accepts pt unit
+// Modernized spacing system inspired by Tailwind CSS, converted from rem to pt (1rem = 12pt)
 export const spacing = {
   0: "0",
   0.5: "1.5pt",
@@ -44,19 +43,23 @@ export const styles = StyleSheet.create({
   flexRow: {
     display: "flex",
     flexDirection: "row",
+    gap: spacing[2],
   },
   flexRowBetween: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   flexCol: {
     display: "flex",
     flexDirection: "column",
+    gap: spacing[3],
   },
   icon: {
-    width: "13pt",
-    height: "13pt",
-    fill: "#525252", // text-neutral-600
+    width: "14pt",
+    height: "14pt",
+    fill: "#4b5563", // Modernized neutral color (gray-600)
+    opacity: 0.9,
   },
 });
