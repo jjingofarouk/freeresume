@@ -1,134 +1,123 @@
 "use client";
+import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
 import heartSrc from "public/assets/heart.svg";
 import testimonialSpiegelSrc from "public/assets/testimonial-spiegel.jpg";
 import testimonialSantiSrc from "public/assets/testimonial-santi.jpg";
 import testimonialVivianSrc from "public/assets/testimonial-vivian.jpg";
 import React, { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { useTailwindBreakpoints } from "lib/hooks/useTailwindBreakpoints";
 
 const TESTIMONIALS = [
   {
     src: testimonialSpiegelSrc,
     quote:
-      "Students often make silly mistakes on their resume by using inconsistent bullet points or font sizes. FreeResume’s auto format feature is a great help to ensure consistent format.",
+      "FreeResume’s auto-format feature ensures consistent styling, saving students from common resume mistakes like mismatched fonts or bullet points.",
     name: "Ms. Spiegel",
     title: "Educator",
   },
   {
     src: testimonialSantiSrc,
     quote:
-      "I used FreeResume during my last job search and was invited to interview at top tech companies such as Google and Amazon thanks to its slick yet professional resume design.",
+      "Thanks to FreeResume’s sleek, professional design, I landed interviews at top tech companies like Google and Amazon during my job search.",
     name: "Santi",
     title: "Software Engineer",
   },
   {
     src: testimonialVivianSrc,
     quote:
-      "Creating a professional resume on FreeResume is so smooth and easy! It saves me so much time and headache to not deal with google doc template.",
+      "FreeResume made creating a professional resume effortless, saving me time and stress compared to wrestling with Google Docs templates.",
     name: "Vivian",
     title: "College Student",
   },
 ];
 
-const LG_TESTIMONIALS_CLASSNAMES = [
-  "z-10",
-  "translate-x-44 translate-y-24 opacity-40",
-  "translate-x-32 -translate-y-28 opacity-40",
-];
-const SM_TESTIMONIALS_CLASSNAMES = ["z-10", "opacity-0", "opacity-0"];
 const ROTATION_INTERVAL_MS = 8 * 1000; // 8s
 
 export const Testimonials = ({ children }: { children?: React.ReactNode }) => {
-  const [testimonialsClassNames, setTestimonialsClassNames] = useState(
-    LG_TESTIMONIALS_CLASSNAMES
-  );
+  const [activeIndex, setActiveIndex] = useState(0);
   const isHoveredOnTestimonial = useRef(false);
+  const controls = useAnimation();
+  const { isLg } = useTailwindBreakpoints();
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       if (!isHoveredOnTestimonial.current) {
-        setTestimonialsClassNames((preClassNames) => {
-          return [preClassNames[1], preClassNames[2], preClassNames[0]];
+        setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+        controls.start({
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5 },
         });
       }
     }, ROTATION_INTERVAL_MS);
     return () => clearInterval(intervalId);
-  }, []);
-
-  const { isLg } = useTailwindBreakpoints();
-  useEffect(() => {
-    setTestimonialsClassNames(
-      isLg ? LG_TESTIMONIALS_CLASSNAMES : SM_TESTIMONIALS_CLASSNAMES
-    );
-  }, [isLg]);
+  }, [controls]);
 
   return (
-    <section className="mx-auto -mt-2 px-8 pb-24">
-      <h2 className="mb-8 text-center text-3xl font-bold">
-        People{" "}
-        <Image src={heartSrc} alt="love" className="-mt-1 inline-block w-7" />{" "}
-        FreeResume
-      </h2>
-      <div className="mx-auto mt-10 h-[235px] max-w-lg lg:h-[400px] lg:pt-28">
-        <div className="relative lg:ml-[-50px]">
-          {TESTIMONIALS.map(({ src, quote, name, title }, idx) => {
-            const className = testimonialsClassNames[idx];
-            return (
-              <div
-                key={idx}
-                className={`bg-primary absolute max-w-lg rounded-[1.7rem] bg-opacity-30 shadow-md transition-all duration-1000 ease-linear ${className}`}
-                onMouseEnter={() => {
-                  if (className === "z-10") {
-                    isHoveredOnTestimonial.current = true;
-                  }
-                }}
-                onMouseLeave={() => {
-                  if (className === "z-10") {
-                    isHoveredOnTestimonial.current = false;
-                  }
-                }}
-              >
-                <figure className="m-1 flex gap-5 rounded-3xl bg-white p-5 text-gray-900 lg:p-7">
-                  <Image
-                    className="hidden h-24 w-24 select-none rounded-full lg:block"
-                    src={src}
-                    alt="profile"
-                  />
-                  <div>
-                    <blockquote>
-                      <p className="before:content-['“'] after:content-['”']">
-                        {quote}
-                      </p>
-                    </blockquote>
-                    <figcaption className="mt-3">
-                      <div className="hidden gap-2 lg:flex">
-                        <div className="font-semibold">{name}</div>
-                        <div
-                          className="select-none text-gray-700"
-                          aria-hidden="true"
-                        >
-                          •
-                        </div>
-                        <div className="text-gray-600">{title}</div>
+    <section className="mx-auto py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+      <motion.h2
+        className="text-center text-4xl font-bold text-gray-900 lg:text-5xl flex items-center justify-center gap-2"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        Loved by Our Community
+        <Image src={heartSrc} alt="love" className="w-8 h-8 text-primary" />
+      </motion.h2>
+      <div className="mx-auto mt-12 max-w-4xl px-6">
+        <div className="relative">
+          {TESTIMONIALS.map(({ src, quote, name, title }, idx) => (
+            <motion.div
+              key={idx}
+              className={`absolute inset-0 rounded-2xl bg-white shadow-lg border border-gray-100 transition-all duration-500 ${
+                idx === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+              }`}
+              animate={controls}
+              onMouseEnter={() => (isHoveredOnTestimonial.current = true)}
+              onMouseLeave={() => (isHoveredOnTestimonial.current = false)}
+            >
+              <figure className="flex flex-col sm:flex-row items-center gap-6 p-6 lg:p-8 text-gray-900">
+                <Image
+                  className="h-20 w-20 rounded-full object-cover border-2 border-[color:var(--theme-purple)]/20"
+                  src={src}
+                  alt={`${name}'s profile`}
+                />
+                <div className="text-center sm:text-left">
+                  <blockquote className="text-lg text-gray-700 italic">
+                    <p className="before:content-['“'] after:content-['”']">{quote}</p>
+                  </blockquote>
+                  <figcaption className="mt-4">
+                    <div className="flex items-center justify-center sm:justify-start gap-2">
+                      <div className="font-semibold text-gray-900">{name}</div>
+                      <div className="text-gray-500" aria-hidden="true">
+                        •
                       </div>
-                      <div className="flex gap-4 lg:hidden">
-                        <Image
-                          className=" block h-12 w-12 select-none rounded-full"
-                          src={src}
-                          alt="profile"
-                        />
-                        <div>
-                          <div className="font-semibold">{name}</div>
-                          <div className="text-gray-600">{title}</div>
-                        </div>
-                      </div>
-                    </figcaption>
-                  </div>
-                </figure>
-              </div>
-            );
-          })}
+                      <div className="text-gray-600">{title}</div>
+                    </div>
+                  </figcaption>
+                </div>
+              </figure>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[color:var(--theme-purple)]/5 to-[color:var(--theme-blue)]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
+          ))}
         </div>
+        {isLg && (
+          <div className="flex justify-center mt-8 gap-2">
+            {TESTIMONIALS.map((_, idx) => (
+              <button
+                key={idx}
+                className={`h-2 w-2 rounded-full transition-all duration-300 ${
+                  idx === activeIndex ? "bg-primary w-4" : "bg-gray-300"
+                }`}
+                onClick={() => {
+                  setActiveIndex(idx);
+                  controls.start({ opacity: 1, y: 0, transition: { duration: 0.5 } });
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
       {children}
     </section>
