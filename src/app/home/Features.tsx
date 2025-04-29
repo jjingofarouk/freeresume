@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { motion } from "framer-motion";
 import featureFreeSrc from "public/assets/feature-free.svg";
 import featureUSSrc from "public/assets/feature-us.svg";
 import featurePrivacySrc from "public/assets/feature-privacy.svg";
@@ -9,26 +10,25 @@ const FEATURES = [
   {
     src: featureFreeSrc,
     title: "Free Forever",
-    text: "OpenResume is created with the belief that everyone should have free and easy access to a modern professional resume design",
+    text: "Access professional resume designs at no cost, ensuring everyone can create a standout resume without financial barriers.",
   },
   {
     src: featureUSSrc,
-    title: "U.S. Best Practices",
-    text: "OpenResume has built-in best practices for the U.S. job market and works well with top ATS platforms such as Greenhouse and Lever",
+    title: "U.S. Optimized",
+    text: "Crafted with U.S. job market best practices, seamlessly compatible with leading ATS platforms like Greenhouse and Lever.",
   },
   {
     src: featurePrivacySrc,
-    title: "Privacy Focus",
-    text: "OpenResume stores data locally in your browser so only you have access to your data and with complete control",
+    title: "Privacy First",
+    text: "Your data stays secure, stored locally in your browser, giving you full control and peace of mind.",
   },
   {
     src: featureOpenSourceSrc,
     title: "Open-Source",
     text: (
       <>
-        OpenResume is an open-source project, and its source code can be viewed
-        by anyone on its{" "}
-        <Link href="https://github.com/xitanggg/open-resume">
+        Explore and contribute to our open-source project on its{" "}
+        <Link href="https://github.com/xitanggg/open-resume" className="text-primary hover:underline">
           GitHub repository
         </Link>
       </>
@@ -38,25 +38,42 @@ const FEATURES = [
 
 export const Features = () => {
   return (
-    <section className="py-16 lg:py-36">
-      <div className="mx-auto lg:max-w-4xl">
-        <dl className="grid grid-cols-1 justify-items-center gap-y-8 lg:grid-cols-2 lg:gap-x-6 lg:gap-y-16">
-          {FEATURES.map(({ src, title, text }) => (
-            <div className="px-2" key={title}>
-              <div className="relative w-96 self-center pl-16">
-                <dt className="text-2xl font-bold">
-                  <Image
-                    src={src}
-                    className="absolute left-0 top-1 h-12 w-12"
-                    alt="Feature icon"
-                  />
-                  {title}
-                </dt>
-                <dd className="mt-2">{text}</dd>
+    <section className="py-20 lg:py-40 bg-gradient-to-b from-white to-gray-50">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold text-gray-900 lg:text-4xl">Why Choose OpenResume</h2>
+          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            Discover the powerful features that make OpenResume the ideal choice for your professional journey.
+          </p>
+        </motion.div>
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {FEATURES.map(({ src, title, text }, index) => (
+            <motion.div
+              key={title}
+              className="relative bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+            >
+              <div className="flex items-center mb-4">
+                <Image
+                  src={src}
+                  className="h-10 w-10 text-primary"
+                  alt={`${title} icon`}
+                />
+                <h3 className="ml-3 text-xl font-semibold text-gray-900">{title}</h3>
               </div>
-            </div>
+              <p className="text-gray-600 text-sm leading-relaxed">{text}</p>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[color:var(--theme-purple)]/5 to-[color:var(--theme-blue)]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
           ))}
-        </dl>
+        </div>
       </div>
     </section>
   );
