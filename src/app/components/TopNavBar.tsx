@@ -19,10 +19,10 @@ export const TopNavBar = () => {
     >
       <div className="flex h-10 w-full items-center justify-between">
         <Link href="/">
-          <span className="sr-only">OpenResume</span>
+          <span className="sr-only">FreeResume</span>
           <Image
             src={logoSrc}
-            alt="OpenResume Logo"
+            alt="FreeResume Logo"
             className="h-8 w-full"
             priority
           />
