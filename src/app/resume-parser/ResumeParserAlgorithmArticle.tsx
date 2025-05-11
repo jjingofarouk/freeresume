@@ -15,7 +15,7 @@ import type {
   TextScores,
 } from "lib/parse-resume-from-pdf/types";
 import { extractProfile } from "lib/parse-resume-from-pdf/extract-resume-from-sections/extract-profile";
-import styles from "./ResumeParser.css";
+import "./ResumeParser.css";
 
 export const ResumeParserAlgorithmArticle = ({
   textItems,
@@ -60,7 +60,7 @@ export const ResumeParserAlgorithmArticle = ({
         <span key={idx}>
           {item.text}
           {idx !== line.length - 1 && (
-            <span className={`${styles.divider} select-none font-extrabold`}>
+            <span className="divider select-none font-extrabold">
                 {"|"}  
             </span>
           )}
@@ -105,50 +105,50 @@ export const ResumeParserAlgorithmArticle = ({
   ];
 
   return (
-    <article className={styles.article}>
-      <Heading className={`${styles.heading} ${styles.headingLevel1}`}>
+    <article className="article">
+      <Heading className="heading headingLevel1">
         Resume Parsing Algorithm: Technical Overview
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         This section provides a comprehensive exploration of the resume parsing algorithm developed by our organization. It outlines the four-step process designed to extract structured data from single-column English-language resumes.
       </Paragraph>
       {/* Step 1. Extract Text Items from PDF */}
-      <Heading level={2} className={`${styles.heading} ${styles.headingLevel2}`}>
+      <Heading level={2} className="heading headingLevel2">
         Step 1: Extract Text Items from PDF
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         The PDF format, standardized under{" "}
-        <Link href="https://www.iso.org/standard/51502.html" className={styles.link}>
+        <Link href="https://www.iso.org/standard/51502.html" className="link">
           ISO 32000
         </Link>
         , encodes content in a complex structure. To process a resume, our parser decodes the PDF using Mozilla's open-source{" "}
-        <Link href="https://github.com/mozilla/pdf.js" className={styles.link}>
+        <Link href="https://github.com/mozilla/pdf.js" className="link">
           pdf.js
         </Link>{" "}
         library to extract text items, including their content and metadata such as x, y coordinates, bold formatting, and line breaks.
       </Paragraph>
-      <Paragraph className={styles.paragraph}>
+      <Paragraph className="paragraph">
         The table below displays {textItems.length} text items extracted from the provided resume PDF. Each item includes metadata such as position (relative to the bottom-left corner at origin 0,0), boldness, and newline indicators.
       </Paragraph>
-      <div className={`${styles.tableContainer} ${styles.scrollbar}`}>
+      <div className="tableContainer scrollbar">
         <Table
           table={step1TextItemsTable}
-          className={styles.table}
+          className="table"
           tdClassNames={["", "", "md:whitespace-nowrap"]}
         />
       </div>
       {/* Step 2. Group Text Items into Lines */}
-      <Heading level={2} className={`${styles.heading} ${styles.headingLevel2}`}>
+      <Heading level={2} className="heading headingLevel2">
         Step 2: Group Text Items into Lines
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         Extracted text items require further processing to address two challenges:
       </Paragraph>
-      <Paragraph className={styles.paragraph}>
+      <Paragraph className="paragraph">
         <span className="block font-semibold">Challenge 1: Fragmentation</span>
         Text items, such as phone numbers (e.g., "(123) 456-7890"), may be split into multiple fragments. To resolve this, adjacent items are merged if their horizontal distance is less than the average character width, calculated as:
         <span
-          className={`${styles.math} my-2 block text-left text-base`}
+          className="math my-2 block text-left text-base"
           dangerouslySetInnerHTML={{
             __html: `<math display="block">
                         <mrow>
@@ -163,24 +163,24 @@ export const ResumeParserAlgorithmArticle = ({
         />
         The average character width excludes bolded text and newlines to ensure accuracy.
       </Paragraph>
-      <Paragraph className={styles.paragraph}>
+      <Paragraph className="paragraph">
         <span className="block font-semibold">Challenge 2: Lack of Context</span>
         Raw text items lack the contextual associations humans infer from visual cues. Our parser groups items into lines, mimicking human reading patterns, to establish these relationships.
       </Paragraph>
-      <Paragraph className={styles.paragraph}>
+      <Paragraph className="paragraph">
         The result is {lines.length} lines, displayed below. Multiple text items within a line are separated by a vertical divider.
       </Paragraph>
-      <div className={`${styles.tableContainer} ${styles.scrollbar}`}>
-        <Table table={step2LinesTable} className={styles.table} />
+      <div className="tableContainer scrollbar">
+        <Table table={step2LinesTable} className="table" />
       </div>
       {/* Step 3. Group Lines into Sections */}
-      <Heading level={2} className={`${styles.heading} ${styles.headingLevel2}`}>
+      <Heading level={2} className="heading headingLevel2">
         Step 3: Group Lines into Sections
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         Building on line grouping, this step organizes lines into sections to enhance contextual understanding. Most sections begin with a title, a common convention in resumes.
       </Paragraph>
-      <Paragraph className={styles.paragraph}>
+      <Paragraph className="paragraph">
         Section titles are identified using a primary heuristic requiring:
         <br />
         1. A single text item in the line
@@ -191,37 +191,37 @@ export const ResumeParserAlgorithmArticle = ({
         <br />
         A fallback heuristic uses keyword matching against common resume section titles if the primary criteria are not met.
       </Paragraph>
-      <Paragraph className={styles.paragraph}>
+      <Paragraph className="paragraph">
         The table below shows identified sections, with titles in bold and associated lines highlighted in matching colors.
       </Paragraph>
-      <div className={`${styles.tableContainer} ${styles.scrollbar}`}>
+      <div className="tableContainer scrollbar">
         <Step3SectionsTable sections={sections} />
       </div>
       {/* Step 4. Extract Resume Data from Sections */}
-      <Heading level={2} className={`${styles.heading} ${styles.headingLevel2}`}>
+      <Heading level={2} className="heading headingLevel2">
         Step 4: Extract Resume Data from Sections
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         The final step extracts structured resume data using a feature-scoring system. Each resume attribute is evaluated against custom feature sets, which assign positive or negative scores based on matching criteria. The text item with the highest score is selected as the attribute value.
       </Paragraph>
-      <Heading level={3} className={`${styles.heading} ${styles.headingLevel3}`}>
+      <Heading level={3} className="heading headingLevel3">
         Feature Scoring System
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         The table below illustrates three attributes extracted from the profile section of the provided resume, showing the highest-scoring text and scores for other candidates.
       </Paragraph>
-      <Table table={step4ProfileFeatureScoresTable} className={`${styles.table} mt-4`} />
+      <Table table={step4ProfileFeatureScoresTable} className="table mt-4" />
       {(profileScores.name.find((item) => item.text === profile.name)?.score ||
         0) > 0 && (
-        <Paragraph className={styles.paragraph} smallMarginTop={true}>
+        <Paragraph className="paragraph" smallMarginTop={true}>
           The name attribute is identified as "{profile.name}" with a feature score of{" "}
           {profileScores.name.find((item) => item.text === profile.name)?.score}, the highest in the profile section.
         </Paragraph>
       )}
-      <Heading level={3} className={`${styles.heading} ${styles.headingLevel3}`}>
+      <Heading level={3} className="heading headingLevel3">
         Feature Sets
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         Feature sets are crafted based on two principles:
         <br />
         1. Relative comparison to other attributes in the same section
@@ -233,23 +233,23 @@ export const ResumeParserAlgorithmArticle = ({
       <Table
         table={step4NameFeatureSetsTable}
         title="Name Feature Sets"
-        className={`${styles.table} mt-4`}
+        className="table mt-4"
       />
-      <Heading level={3} className={`${styles.heading} ${styles.headingLevel3}`}>
+      <Heading level={3} className="heading headingLevel3">
         Core Feature Functions
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         Each attribute relies on a core feature function for identification, as shown below.
       </Paragraph>
-      <Table table={step4CoreFeatureFunctionTable} className={`${styles.table} mt-4`} />
-      <Heading level={3} className={`${styles.heading} ${styles.headingLevel3}`}>
+      <Table table={step4CoreFeatureFunctionTable} className="table mt-4" />
+      <Heading level={3} className="heading headingLevel3">
         Handling Subsections
       </Heading>
-      <Paragraph className={styles.paragraph} smallMarginTop={true}>
+      <Paragraph className="paragraph" smallMarginTop={true}>
         For sections like education or work experience, subsections are detected using a heuristic based on vertical line gaps (1.4x the typical gap) or bolded text. Each subsection is processed independently to extract attributes.
       </Paragraph>
-      <Paragraph className={styles.paragraph}>
-        Authored by <Link href="https://github.com/xitanggg" className={styles.link}>Xitang Zhao</Link>, June 2023
+      <Paragraph className="paragraph">
+        Authored by <Link href="https://github.com/xitanggg" className="link">Xitang Zhao</Link>, June 2023
       </Paragraph>
     </article>
   );
@@ -317,12 +317,12 @@ const Step3SectionsTable = ({
   const trClassNames = [];
   let lineCounter = 0;
   const BACKGROUND_COLORS = [
-    styles.tableRowRed,
-    styles.tableRowYellow,
-    styles.tableRowOrange,
-    styles.tableRowGreen,
-    styles.tableRowBlue,
-    styles.tableRowPurple,
+    "tableRowRed",
+    "tableRowYellow",
+    "tableRowOrange",
+    "tableRowGreen",
+    "tableRowBlue",
+    "tableRowPurple",
   ] as const;
   const sectionsEntries = Object.entries(sections);
 
@@ -333,7 +333,7 @@ const Step3SectionsTable = ({
           <span key={idx}>
             {item.text}
             {idx !== line.length - 1 && (
-              <span className={`${styles.divider} select-none font-extrabold`}>
+              <span className="divider select-none font-extrabold">
                   {"|"}  
               </span>
             )}
@@ -360,10 +360,10 @@ const Step3SectionsTable = ({
   }
 
   return (
-    <div className={`${styles.tableContainer} ${styles.scrollbar}`}>
+    <div className="tableContainer scrollbar">
       <Table
         table={table}
-        className={styles.table}
+        className="table"
         trClassNames={trClassNames}
       />
     </div>
