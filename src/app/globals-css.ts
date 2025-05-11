@@ -1,3 +1,4 @@
+// src/styles/global.ts
 export const CSS_VARIABLES = {
   "--top-nav-bar-height": "3.5rem",
   "--resume-control-bar-height": "3rem",
@@ -13,4 +14,5 @@ export const CSS_VARIABLES = {
   "--spacing-md": "16px",
   "--spacing-lg": "24px",
   "--spacing-xl": "32px",
+  "--background-dot": "url('/assets/dots.svg')",
 } as const;
