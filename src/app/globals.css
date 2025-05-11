@@ -1,4 +1,4 @@
-
+/* src/styles/global.css */
 @import url("/fonts/fonts.css");
 @tailwind base;
 @tailwind components;
@@ -20,6 +20,7 @@
     --top-nav-bar-height: 3.5rem;
     --resume-control-bar-height: 3rem;
     --resume-padding: 1.5rem;
+    --background-dot: url('/assets/dots.svg');
   }
 
   @media (prefers-color-scheme: dark) {
