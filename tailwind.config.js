@@ -1,7 +1,7 @@
-
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/app/**/*.{ts,tsx,mdx}"],
+  content: ["./src/**/*.{ts,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
@@ -27,7 +27,7 @@ module.exports = {
         "2xl": "1.5rem",
       },
       backgroundImage: {
-        dot: "url('/assets/dots.svg')",
+        dot: "var(--background-dot)",
       },
     },
   },
