@@ -249,7 +249,7 @@ export const ResumeParserAlgorithmArticle = ({
         For sections like education or work experience, subsections are detected using a heuristic based on vertical line gaps (1.4x the typical gap) or bolded text. Each subsection is processed independently to extract attributes.
       </Paragraph>
       <Paragraph className="paragraph">
-        Authored by <Link href="https://github.com/xitanggg" className="link">Xitang Zhao</Link>, June 2023
+        Authored by <Link href="https://github.com/jjingofarouk" className="link">Farouk Jjingo</Link>, January 2025
       </Paragraph>
     </article>
   );
