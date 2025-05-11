@@ -1,3 +1,4 @@
+
 "use client";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -13,7 +14,7 @@ export const TopNavBar = () => {
     <header
       aria-label="Site Header"
       className={cx(
-        "sticky top-0 z-50 flex h-[var(--top-nav-bar-height)] items-center border-b border-theme-light-gray/20 bg-theme-dark-teal/95 px-4 backdrop-blur-md sm:px-6 lg:px-12",
+        "sticky top-0 z-50 flex h-[var(--top-nav-bar-height)] items-center border-b border-theme-light-gray/20 bg-theme-navy/95 px-4 backdrop-blur-md sm:px-6 lg:px-12",
         isHomePage && "bg-dot"
       )}
     >
@@ -44,10 +45,10 @@ export const TopNavBar = () => {
               key={text}
               href={href}
               className={cx(
-                "rounded-xl px-3 py-2 text-theme-light-gray/80 outline-theme-dark-teal transition-all duration-200",
+                "rounded-xl px-3 py-2 text-theme-light-gray/80 outline-theme-dark-navy transition-all duration-200",
                 pathName === href
-                  ? "bg-theme-coral/20 text-theme-light-gray"
-                  : "hover:bg-theme-coral/10 hover:text-theme-light-gray"
+                  ? "bg-theme-emerald/20 text-theme-light-gray"
+                  : "hover:bg-theme-emerald/10 hover:text-theme-light-gray"
               )}
             >
               {text}
