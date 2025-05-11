@@ -46,8 +46,8 @@ export const TopNavBar = () => {
               className={cx(
                 "rounded-xl px-3 py-2 text-theme-light-gray/80 outline-theme-dark-teal transition-all duration-200",
                 pathName === href
-                  ? "bg-theme-teal/20 text-theme-light-gray"
-                  : "hover:bg-theme-teal/10 hover:text-theme-light-gray"
+                  ? "bg-theme-coral/20 text-theme-light-gray"
+                  : "hover:bg-theme-coral/10 hover:text-theme-light-gray"
               )}
             >
               {text}
