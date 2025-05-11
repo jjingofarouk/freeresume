@@ -9,7 +9,7 @@ module.exports = {
         "theme-dark-navy": "var(--theme-dark-navy)",
         "theme-emerald": {
           DEFAULT: "var(--theme-emerald)",
-          hover: "#248b80", // Custom hover shade for emerald
+          hover: "#248b80",
         },
         "theme-gold": "var(--theme-gold)",
         "theme-light-gray": "var(--theme-light-gray)",
