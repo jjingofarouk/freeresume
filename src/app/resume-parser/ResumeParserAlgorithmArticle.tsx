@@ -15,7 +15,7 @@ import type {
   TextScores,
 } from "lib/parse-resume-from-pdf/types";
 import { extractProfile } from "lib/parse-resume-from-pdf/extract-resume-from-sections/extract-profile";
-import styles from "./ResumeParserAlgorithmArticle.css";
+import styles from "./ResumeParser.css";
 
 export const ResumeParserAlgorithmArticle = ({
   textItems,
