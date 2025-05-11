@@ -8,6 +8,7 @@ module.exports = {
         "theme-dark-teal": "var(--theme-dark-teal)",
         "theme-teal": "var(--theme-teal)",
         "theme-teal-dark": "var(--theme-teal-dark)",
+        "theme-orange": "var(--theme-orange)",
         "theme-light-gray": "var(--theme-light-gray)",
         "theme-black": "var(--theme-black)",
       },
@@ -20,6 +21,7 @@ module.exports = {
       },
       borderRadius: {
         xl: "1rem",
+        "2xl": "1.5rem",
       },
       backgroundImage: {
         dot: "url('/assets/dots.svg')",
