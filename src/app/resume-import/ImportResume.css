@@ -1,0 +1,111 @@
+/* ImportResume.module.css */
+:root {
+  --primary-color: #3b82f6; /* Vibrant blue for primary actions */
+  --secondary-color: #10b981; /* Green for success/secondary actions */
+  --accent-color: #f59e0b; /* Warm yellow for highlights */
+  --background-color: #f8fafc; /* Light background */
+  --text-color: #1e293b; /* Dark slate for text */
+  --border-color: #e2e8f0; /* Subtle border */
+  --divider-color: #d1d5db; /* Light gray for dividers */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease-in-out;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--background-color), #e0f2fe);
+  padding: 2rem;
+}
+
+.container {
+  max-width: 48rem;
+  background: white;
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  padding: 3rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.dropzone {
+  margin-top: 2rem;
+  padding: 2rem;
+  border: 2px dashed var(--primary-color);
+  border-radius: 0.75rem;
+  background: rgba(59, 130, 246, 0.05);
+  transition: var(--transition);
+}
+
+.dropzone:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: var(--secondary-color);
+}
+
+.orDivider {
+  display: flex;
+  align-items: center;
+  margin: 2rem -2.5rem;
+  color: var(--divider-color);
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.orDividerLine {
+  flex-grow: 1;
+  border-top: 1px solid var(--divider-color);
+}
+
+.orDividerText {
+  margin: 0 1rem;
+  color: var(--divider-color);
+}
+
+.actionSection {
+  margin: 2rem 0;
+}
+
+.actionButton {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: var(--primary-color);
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.actionButton:hover {
+  background: var(--secondary-color);
+  transform: scale(1.05);
+}
+
+.actionButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
