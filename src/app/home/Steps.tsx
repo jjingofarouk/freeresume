@@ -22,7 +22,7 @@ const STEPS = [
 ];
 
 export const Steps = () => {
-  const playerRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const playerRefs = useRef<(Player | null)[]>([]);
 
   return (
     <section className="bg-theme-navy py-[var(--spacing-xl)]">
@@ -36,7 +36,7 @@ export const Steps = () => {
       </motion.h1>
       <div className="mt-[var(--spacing-lg)] max-w-6xl mx-auto px-[var(--spacing-md)]">
         <div className="grid grid-cols-1 gap-[var(--spacing-md)] lg:grid-cols-3">
-          {STEPS.map(({ title, text, lottieSrc }, idx) => (
+          {STPS.map(({ title, text, lottieSrc }, idx) => (
             <motion.div
               key={idx}
               className="relative rounded-2xl border border-theme-dark-navy bg-theme-dark-navy/50 p-[var(--spacing-md)] shadow-lg backdrop-blur-sm overflow-hidden"
