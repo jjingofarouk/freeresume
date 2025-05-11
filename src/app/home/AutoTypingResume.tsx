@@ -1,3 +1,4 @@
+```jsx
 "use client";
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -10,15 +11,15 @@ import { makeObjectCharIterator } from "lib/make-object-char-iterator";
 import { useTailwindBreakpoints } from "lib/hooks/useTailwindBreakpoints";
 import { deepClone } from "lib/deep-clone";
 
-const INTERVAL_MS = 100; // Typing speed (10 intervals per second)
-const CHARS_PER_INTERVAL = 5; // Characters per interval
-const RESET_INTERVAL_MS = 90 * 1000; // 90s reset cycle
-const FADE_DURATION = 0.3; // Smooth fade duration
-const PAUSE_DURATION_MS = 5000; // 5s pause after typing
-const SCROLL_DURATION = 5000; // 5s scroll animation
+const INTERVAL_MS = 100;
+const CHARS_PER_INTERVAL = 5;
+const RESET_INTERVAL_MS = 90 * 1000;
+const FADE_DURATION = 0.3;
+const PAUSE_DURATION_MS = 5000;
+const SCROLL_DURATION = 5000;
 
 export const AutoTypingResume = () => {
-  const [resume, setResume] = useState(deepClone(initialResumeState));
+  const [resume, setResume] = useState(deepClone(START_HOME_RESUME));
   const resumeCharIterator = useRef(
     makeObjectCharIterator(START_HOME_RESUME, END_HOME_RESUME)
   );
@@ -30,7 +31,6 @@ export const AutoTypingResume = () => {
   const controls = useAnimation();
   const cursorControls = useAnimation();
 
-  // Calculate dynamic scale based on breakpoint
   const getScale = () => {
     if (isXl) return 0.85;
     if (isLg) return 0.75;
@@ -39,7 +39,6 @@ export const AutoTypingResume = () => {
     return 0.45;
   };
 
-  // Auto-scroll animation
   const triggerScroll = async () => {
     if (scrollContainerRef.current && !hasScrolled.current) {
       const container = scrollContainerRef.current;
@@ -89,9 +88,9 @@ export const AutoTypingResume = () => {
       hasScrolled.current = false;
       isPaused.current = true;
       await controls.start({ opacity: 0, y: 20, transition: { duration: FADE_DURATION } });
-      setResume(deepClone(initialResumeState));
+      setResume(deepClone(START_HOME_RESUME));
       if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollTop = 0; // Reset scroll position
+        scrollContainerRef.current.scrollTop = 0;
       }
       await controls.start({ opacity: 1, y: 0, transition: { duration: FADE_DURATION } });
       isPaused.current = false;
@@ -105,8 +104,7 @@ export const AutoTypingResume = () => {
     <motion.div
       className="relative rounded-2xl bg-white shadow-xl ring-1 ring-theme-dark-navy/20 overflow-hidden"
       animate={controls}
-      initial={{ opacity: 0, y: 20 }}
-      style={{ scrollBehavior: "smooth" }}
+      initial={{ opacity: 1, y: 0 }}
     >
       <div
         ref={scrollContainerRef}
@@ -119,7 +117,7 @@ export const AutoTypingResume = () => {
               ...initialSettings,
               fontFamily: "Inter",
               fontSize: "12",
-              themeColor: "#2a9d8f", // Emerald green for resume accents
+              themeColor: "#2a9d8f",
               formToHeading: {
                 workExperiences: resume.workExperiences[0].company
                   ? "Work Experience"
