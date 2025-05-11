@@ -1,48 +1,74 @@
+// src/app/home/Steps.tsx
 import { motion } from "framer-motion";
+import { Player } from "@lottiefiles/react-lottie-player";
+import { useRef } from "react";
 
 const STEPS = [
   {
-    title: "Start Your Resume",
-    text: "Upload an existing PDF or build a new one from scratch.",
+    title: "Initiate Your Resume",
+    text: "Seamlessly import existing documents or create a new resume with our enterprise-grade builder.",
+    lottieSrc: "/assets/lottie/resume-start.json",
   },
   {
-    title: "Customize & Preview",
-    text: "Easily edit and see your professional design come to life.",
+    title: "Tailor & Visualize",
+    text: "Leverage intuitive editing tools and real-time previews to craft a professional resume.",
+    lottieSrc: "/assets/lottie/resume-customize.json",
   },
   {
-    title: "Download & Apply",
-    text: "Export your polished resume and apply with confidence.",
+    title: "Export & Succeed",
+    text: "Download your ATS-optimized resume and confidently apply to top-tier opportunities.",
+    lottieSrc: "/assets/lottie/resume-download.json",
   },
 ];
 
 export const Steps = () => {
+  const playerRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   return (
-    <section className="mx-auto mt-12 py-16 lg:mt-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+    <section className="bg-theme-navy py-[var(--spacing-xl)]">
       <motion.h1
-        className="text-center text-4xl font-bold text-gray-900 lg:text-5xl"
+        className="text-center text-4xl font-bold text-theme-light-gray lg:text-5xl"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Create Your Resume in 3 Easy Steps
+        Build Your Resume in 3 Seamless Steps
       </motion.h1>
-      <div className="mt-12 max-w-5xl mx-auto px-6">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-3 sm:gap-6">
-          {STEPS.map(({ title, text }, idx) => (
+      <div className="mt-[var(--spacing-lg)] max-w-6xl mx-auto px-[var(--spacing-md)]">
+        <div className="grid grid-cols-1 gap-[var(--spacing-md)] lg:grid-cols-3">
+          {STEPS.map(({ title, text, lottieSrc }, idx) => (
             <motion.div
               key={idx}
-              className="relative bg-white rounded-xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
+              className="relative rounded-2xl border border-theme-dark-navy bg-theme-dark-navy/50 p-[var(--spacing-md)] shadow-lg backdrop-blur-sm overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: idx * 0.2 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ scale: 1.02 }}
             >
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary rounded-full h-10 w-10 flex items-center justify-center text-white font-bold text-xl">
-                {idx + 1}
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-theme-emerald to-theme-gold" />
+              <div className="relative z-10 text-center">
+                <div className="h-32 mx-auto">
+                  <Player
+                    autoplay
+                    loop
+                    src={lottieSrc}
+                    style={{ height: "100%", width: "100%" }}
+                    ref={(el) => {
+                      playerRefs.current[idx] = el;
+                    }}
+                  />
+                </div>
+                <h3 className="mt-[var(--spacing-sm)] text-xl font-semibold text-theme-light-gray">
+                  {title}
+                </h3>
+                <p className="mt-[var(--spacing-xs)] text-sm text-theme-light-gray/80 leading-relaxed">
+                  {text}
+                </p>
+                <div className="absolute -top-4 left-4 bg-theme-emerald rounded-full h-8 w-8 flex items-center justify-center text-theme-black font-bold text-lg">
+                  {idx + 1}
+                </div>
               </div>
-              <h3 className="mt-6 text-xl font-semibold text-gray-900">{title}</h3>
-              <p className="mt-2 text-gray-600 text-sm">{text}</p>
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[color:var(--theme-purple)]/5 to-[color:var(--theme-blue)]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-theme-emerald/10 to-theme-dark-navy/10 opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
         </div>
