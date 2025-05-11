@@ -8,7 +8,10 @@ module.exports = {
         "theme-dark-teal": "var(--theme-dark-teal)",
         "theme-teal": "var(--theme-teal)",
         "theme-teal-dark": "var(--theme-teal-dark)",
-        "theme-coral": "var(--theme-coral)",
+        "theme-coral": {
+          DEFAULT: "var(--theme-coral)",
+          hover: "#e65c5c", // Custom hover color for coral
+        },
         "theme-light-gray": "var(--theme-light-gray)",
         "theme-black": "var(--theme-black)",
       },
