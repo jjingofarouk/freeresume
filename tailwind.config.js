@@ -1,16 +1,15 @@
-// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/app/**/*.{ts,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        "theme-dark-teal": "var(--theme-dark-teal)",
-        "theme-teal": "var(--theme-teal)",
-        "theme-teal-dark": "var(--theme-teal-dark)",
-        "theme-orange": "var(--theme-orange)",
-        "theme-light-gray": "var(--theme-light-gray)",
-        "theme-black": "var(--theme-black)",
+        "theme-dark-teal": "rgb(var(--theme-dark-teal) / <alpha-value>)",
+        "theme-teal": "rgb(var(--theme-teal) / <alpha-value>)",
+        "theme-teal-dark": "rgb(var(--theme-teal-dark) / <alpha-value>)",
+        "theme-orange": "rgb(var(--theme-orange) / <alpha-value>)",
+        "theme-light-gray": "rgb(var(--theme-light-gray) / <alpha-value>)",
+        "theme-black": "rgb(var(--theme-black) / <alpha-value>)",
       },
       spacing: {
         xs: "var(--spacing-xs)",
