@@ -6,6 +6,7 @@ export const CSS_VARIABLES = {
   "--theme-dark-teal": "#1a535c",
   "--theme-teal": "#4a8e96",
   "--theme-teal-dark": "#163f45",
+  "--theme-orange": "#f97316",
   "--theme-light-gray": "#e5e7eb",
   "--theme-black": "#1f2937",
   "--spacing-xs": "8px",
