@@ -1,4 +1,4 @@
-/* styles/global.css */
+
 @import url("/fonts/fonts.css");
 @tailwind base;
 @tailwind components;
@@ -6,12 +6,12 @@
 
 @layer base {
   :root {
-    --theme-dark-teal: #1a535c;
-    --theme-teal: #4a8e96;
-    --theme-teal-dark: #163f45;
-    --theme-coral: #ff6b6b;
-    --theme-light-gray: #e5e7eb;
-    --theme-black: #1f2937;
+    --theme-navy: #1b263b;
+    --theme-dark-navy: #141c2f;
+    --theme-emerald: #2a9d8f;
+    --theme-gold: #e9c46a;
+    --theme-light-gray: #f1f5f9;
+    --theme-black: #0f172a;
     --spacing-xs: 8px;
     --spacing-sm: 12px;
     --spacing-md: 16px;
@@ -24,33 +24,33 @@
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --theme-light-gray: #d1d5db;
-      --theme-black: #111827;
+      --theme-light-gray: #e2e8f0;
+      --theme-black: #0b1120;
     }
   }
 
   body {
-    @apply bg-theme-dark-teal text-theme-light-gray;
+    @apply bg-theme-navy text-theme-light-gray;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-theme-coral inline-block rounded-xl px-6 py-3 font-semibold text-theme-black shadow-md hover:bg-theme-coral-hover hover:shadow-lg focus-visible:ring-2 focus-visible:ring-theme-teal focus-visible:ring-offset-2 transition-all duration-300;
+    @apply bg-theme-emerald inline-block rounded-xl px-6 py-3 font-semibold text-theme-black shadow-md hover:bg-theme-emerald-hover hover:shadow-lg focus-visible:ring-2 focus-visible:ring-theme-gold focus-visible:ring-offset-2 transition-all duration-300;
   }
   .text-primary {
-    @apply text-theme-coral font-semibold;
+    @apply text-theme-emerald font-semibold;
   }
   .bg-primary {
-    @apply bg-theme-coral text-theme-black;
+    @apply bg-theme-emerald text-theme-black;
   }
-  .outline-theme-dark-teal {
-    @apply hover:ring-2 hover:ring-theme-teal-dark focus-visible:ring-2 focus-visible:ring-theme-teal-dark focus-visible:ring-offset-2 transition-all duration-300;
+  .outline-theme-dark-navy {
+    @apply hover:ring-2 hover:ring-theme-dark-navy focus-visible:ring-2 focus-visible:ring-theme-dark-navy focus-visible:ring-offset-2 transition-all duration-300;
   }
   .outline-theme-light-gray {
     @apply hover:ring-2 hover:ring-theme-light-gray focus-visible:ring-2 focus-visible:ring-theme-light-gray focus-visible:ring-offset-2 transition-all duration-300;
   }
-  .within-outline-theme-dark-teal {
-    @apply focus-within:ring-2 focus-within:ring-theme-teal-dark focus-within:ring-offset-2 hover:ring-2 hover:ring-theme-teal-dark transition-all duration-300;
+  .within-outline-theme-dark-navy {
+    @apply focus-within:ring-2 focus-within:ring-theme-dark-navy focus-within:ring-offset-2 hover:ring-2 hover:ring-theme-dark-navy transition-all duration-300;
   }
 }
