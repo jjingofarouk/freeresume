@@ -25,7 +25,7 @@ export const AutoTypingResume = () => {
   const hasSetEndResume = useRef(false);
   const hasScrolled = useRef(false);
   const isPaused = useRef(false);
-  const scrollContainerRef = useRef(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { isSm, isMd, isLg, isXl } = useTailwindBreakpoints();
   const controls = useAnimation();
   const cursorControls = useAnimation();
