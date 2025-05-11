@@ -1,17 +1,17 @@
-// tailwind.config.js
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/app/**/*.{ts,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        "theme-dark-teal": "var(--theme-dark-teal)",
-        "theme-teal": "var(--theme-teal)",
-        "theme-teal-dark": "var(--theme-teal-dark)",
-        "theme-coral": {
-          DEFAULT: "var(--theme-coral)",
-          hover: "#e65c5c", // Custom hover color for coral
+        "theme-navy": "var(--theme-navy)",
+        "theme-dark-navy": "var(--theme-dark-navy)",
+        "theme-emerald": {
+          DEFAULT: "var(--theme-emerald)",
+          hover: "#248b80", // Custom hover shade for emerald
         },
+        "theme-gold": "var(--theme-gold)",
         "theme-light-gray": "var(--theme-light-gray)",
         "theme-black": "var(--theme-black)",
       },
