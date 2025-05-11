@@ -4,39 +4,49 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  .btn-primary {
-    @apply bg-theme-teal inline-block rounded-lg px-6 py-2.5 font-semibold shadow-sm hover:shadow-lg hover:bg-theme-teal-dark focus-visible:ring-2 focus-visible:ring-theme-light-gray focus-visible:ring-offset-2 transition-all duration-200;
+@layer base {
+  :root {
+    --theme-dark-teal: #1a535c;
+    --theme-teal: #4a8e96;
+    --theme-teal-dark: #163f45;
+    --theme-orange: #f97316; /* Bright orange for accent */
+    --theme-light-gray: #e5e7eb;
+    --theme-black: #1f2937;
+    --spacing-xs: 8px;
+    --spacing-sm: 12px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    --top-nav-bar-height: 3.5rem;
+    --resume-control-bar-height: 3rem;
+    --resume-padding: 1.5rem;
   }
-  .text-primary {
-    @apply text-theme-teal font-semibold;
-  }
-  .bg-primary {
-    @apply bg-theme-teal text-theme-light-gray;
-  }
-  .outline-theme-dark-teal {
-    @apply hover:ring-2 hover:ring-theme-teal-dark focus-visible:ring-2 focus-visible:ring-theme-teal-dark focus-visible:ring-offset-2 transition-all duration-200;
-  }
-  .outline-theme-light-gray {
-    @apply hover:ring-2 hover:ring-theme-light-gray focus-visible:ring-2 focus-visible:ring-theme-light-gray focus-visible:ring-offset-2 transition-all duration-200;
-  }
-  .within-outline-theme-dark-teal {
-    @apply focus-within:ring-2 focus-within:ring-theme-teal-dark focus-within:ring-offset-2 hover:ring-2 hover:ring-theme-teal-dark transition-all duration-200;
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --theme-light-gray: #d1d5db;
+      --theme-black: #111827;
+    }
   }
 }
 
-:root {
-  --theme-dark-teal: #1a535c;
-  --theme-teal: #4a8e96;
-  --theme-teal-dark: #163f45;
-  --theme-light-gray: #e5e7eb;
-  --theme-black: #1f2937;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --top-nav-bar-height: 3.75rem;
-  --resume-control-bar-height: 3.25rem;
-  --resume-padding: 1.75rem;
+@layer components {
+  .btn-primary {
+    @apply bg-theme-orange inline-block rounded-xl px-6 py-3 font-semibold text-theme-black shadow-md hover:bg-theme-orange/90 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-theme-teal focus-visible:ring-offset-2 transition-all duration-300;
+  }
+  .text-primary {
+    @apply text-theme-orange font-semibold;
+  }
+  .bg-primary {
+    @apply bg-theme-orange text-theme-black;
+  }
+  .outline-theme-dark-teal {
+    @apply hover:ring-2 hover:ring-theme-teal-dark focus-visible:ring-2 focus-visible:ring-theme-teal-dark focus-visible:ring-offset-2 transition-all duration-300;
+  }
+  .outline-theme-light-gray {
+    @apply hover:ring-2 hover:ring-theme-light-gray focus-visible:ring-2 focus-visible:ring-theme-light-gray focus-visible:ring-offset-2 transition-all duration-300;
+  }
+  .within-outline-theme-dark-teal {
+    @apply focus-within:ring-2 focus-within:ring-theme-teal-dark focus-within:ring-offset-2 hover:ring-2 hover:ring-theme-teal-dark transition-all duration-300;
+  }
 }
