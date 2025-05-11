@@ -1,0 +1,101 @@
+/* ResumeTable.css */
+:root {
+  --primary-color: #1e3a8a; /* Deep blue for headers */
+  --secondary-color: #047857; /* Emerald green for accents */
+  --accent-color: #b45309; /* Amber for highlights */
+  --background-color: #ffffff; /* Clean white background */
+  --text-color: #1f2937; /* Dark gray for text */
+  --border-color: #e5e7eb; /* Light border */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+.tableContainer {
+  width: 100%;
+  margin-top: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background: var(--background-color);
+  box-shadow: var(--shadow);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+  font-size: 0.875rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableBody {
+  display: table-row-group;
+  vertical-align: top;
+}
+
+.tableRowHeader {
+  background: var(--primary-color);
+  color: white;
+}
+
+.tableRowHeader th {
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.tableRow {
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+
+.tableRow:hover {
+  background: #f1f5f9;
+}
+
+.tableRow th {
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  width: 25%;
+  background: #f9fafb;
+  text-align: left;
+}
+
+.tableRow td {
+  padding: 0.75rem 1.5rem;
+  line-height: 1.5;
+}
+
+.tableRowDivider {
+  border-bottom: 4px solid var(--secondary-color) !important;
+}
+
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.listItem::before {
+  content: '•';
+  color: var(--accent-color);
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .tableContainer {
+    font-size: 0.75rem;
+  }
+
+  .tableRowHeader th,
+  .tableRow th,
+  .tableRow td {
+    padding: 0.5rem 1rem;
+  }
+
+  .tableRow th {
+    width: 35%;
+  }
+}
