@@ -1,3 +1,4 @@
+/* styles/global.css */
 @import url("/fonts/fonts.css");
 @tailwind base;
 @tailwind components;
@@ -5,34 +6,36 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary inline-block rounded-lg px-6 py-2.5 font-semibold shadow-sm hover:shadow-md transition-all duration-200;
+    @apply bg-theme-teal inline-block rounded-lg px-6 py-2.5 font-semibold shadow-sm hover:shadow-lg hover:bg-theme-teal-dark focus-visible:ring-2 focus-visible:ring-theme-light-gray focus-visible:ring-offset-2 transition-all duration-200;
   }
   .text-primary {
-    @apply bg-gradient-to-r from-[color:var(--theme-dark-blue)] to-[color:var(--theme-gold)] bg-clip-text text-transparent;
+    @apply text-theme-teal font-semibold;
   }
   .bg-primary {
-    @apply bg-gradient-to-r from-[color:var(--theme-dark-blue)] to-[color:var(--theme-gold)] text-white;
+    @apply bg-theme-teal text-theme-light-gray;
   }
-  .outline-theme-dark-blue {
-    @apply hover:opacity-90 hover:ring-2 focus-visible:ring-2 focus-visible:ring-offset-2 transition-all duration-200;
-    --tw-ring-color: rgba(14, 26, 64, 0.5); /* var(--theme-dark-blue) with 50% opacity */
+  .outline-theme-dark-teal {
+    @apply hover:ring-2 hover:ring-theme-teal-dark focus-visible:ring-2 focus-visible:ring-theme-teal-dark focus-visible:ring-offset-2 transition-all duration-200;
   }
-  .outline-theme-gold {
-    @apply hover:opacity-90 hover:ring-2 focus-visible:ring-2 focus-visible:ring-offset-2 transition-all duration-200;
-    --tw-ring-color: rgba(148, 107, 45, 0.5); /* var(--theme-gold) with 50% opacity */
+  .outline-theme-light-gray {
+    @apply hover:ring-2 hover:ring-theme-light-gray focus-visible:ring-2 focus-visible:ring-theme-light-gray focus-visible:ring-offset-2 transition-all duration-200;
   }
-  .within-outline-theme-dark-blue {
-    @apply focus-within:ring-2 focus-within:ring-offset-2 hover:opacity-90 hover:ring-2 transition-all duration-200;
-    --tw-ring-color: rgba(14, 26, 64, 0.5); /* var(--theme-dark-blue) with 50% opacity */
+  .within-outline-theme-dark-teal {
+    @apply focus-within:ring-2 focus-within:ring-theme-teal-dark focus-within:ring-offset-2 hover:ring-2 hover:ring-theme-teal-dark transition-all duration-200;
   }
 }
 
 :root {
-  --theme-dark-blue: #0E1A40;
-  --theme-gold: #946B2D;
-  --theme-secondary-blue: #222F5B;
-  --theme-gray: #5D5D5D;
-  --theme-black: #000000;
+  --theme-dark-teal: #1a535c;
+  --theme-teal: #4a8e96;
+  --theme-teal-dark: #163f45;
+  --theme-light-gray: #e5e7eb;
+  --theme-black: #1f2937;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
   --top-nav-bar-height: 3.75rem;
   --resume-control-bar-height: 3.25rem;
   --resume-padding: 1.75rem;
