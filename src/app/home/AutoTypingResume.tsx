@@ -1,3 +1,4 @@
+
 "use client";
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
@@ -10,10 +11,11 @@ import { makeObjectCharIterator } from "lib/make-object-char-iterator";
 import { useTailwindBreakpoints } from "lib/hooks/useTailwindBreakpoints";
 import { deepClone } from "lib/deep-clone";
 
-const INTERVAL_MS = 50; // 20 Intervals Per Second
-const CHARS_PER_INTERVAL = 10;
-const RESET_INTERVAL_MS = 60 * 1000; // 60s
-const FADE_DURATION = 0.5;
+const INTERVAL_MS = 100; // Slower typing speed (10 intervals per second)
+const CHARS_PER_INTERVAL = 5; // Fewer characters per interval for smoother effect
+const RESET_INTERVAL_MS = 90 * 1000; // 90s pause for readability
+const FADE_DURATION = 0.3; // Faster, smoother fade
+const PAUSE_DURATION_MS = 5000; // 5s pause at end of typing
 
 export const AutoTypingResume = () => {
   const [resume, setResume] = useState(deepClone(initialResumeState));
@@ -21,58 +23,78 @@ export const AutoTypingResume = () => {
     makeObjectCharIterator(START_HOME_RESUME, END_HOME_RESUME)
   );
   const hasSetEndResume = useRef(false);
-  const { isLg } = useTailwindBreakpoints();
+  const isPaused = useRef(false);
+  const { isSm, isMd, isLg, isXl } = useTailwindBreakpoints();
   const controls = useAnimation();
+  const cursorControls = useAnimation();
+
+  // Calculate dynamic scale based on breakpoint
+  const getScale = () => {
+    if (isXl) return 0.85;
+    if (isLg) return 0.75;
+    if (isMd) return 0.65;
+    if (isSm) return 0.55;
+    return 0.45;
+  };
 
   useEffect(() => {
-    const intervalId = setInterval(async () => {
+    const typeNext = async () => {
+      if (isPaused.current) return;
+
       let next = resumeCharIterator.current.next();
       for (let i = 0; i < CHARS_PER_INTERVAL - 1; i++) {
         next = resumeCharIterator.current.next();
       }
+
       if (!next.done) {
-        await controls.start({ opacity: 0.7, transition: { duration: FADE_DURATION } });
         setResume(next.value);
-        await controls.start({ opacity: 1, transition: { duration: FADE_DURATION } });
+        await cursorControls.start({ opacity: [1, 0, 1], transition: { duration: 0.5, repeat: 1 } });
       } else if (!hasSetEndResume.current) {
-        await controls.start({ opacity: 0.7, transition: { duration: FADE_DURATION } });
         setResume(END_HOME_RESUME);
-        await controls.start({ opacity: 1, transition: { duration: FADE_DURATION } });
         hasSetEndResume.current = true;
+        isPaused.current = true;
+        setTimeout(() => {
+          isPaused.current = false;
+        }, PAUSE_DURATION_MS);
       }
-    }, INTERVAL_MS);
+    };
+
+    const intervalId = setInterval(typeNext, INTERVAL_MS);
     return () => clearInterval(intervalId);
-  }, [controls]);
+  }, [cursorControls]);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const reset = async () => {
       resumeCharIterator.current = makeObjectCharIterator(
         START_HOME_RESUME,
         END_HOME_RESUME
       );
       hasSetEndResume.current = false;
-      controls.start({ opacity: 0, y: 20 }).then(() => {
-        setResume(deepClone(initialResumeState));
-        controls.start({ opacity: 1, y: 0, transition: { duration: FADE_DURATION } });
-      });
-    }, RESET_INTERVAL_MS);
+      isPaused.current = true;
+      await controls.start({ opacity: 0, y: 20, transition: { duration: FADE_DURATION } });
+      setResume(deepClone(initialResumeState));
+      await controls.start({ opacity: 1, y: 0, transition: { duration: FADE_DURATION } });
+      isPaused.current = false;
+    };
+
+    const intervalId = setInterval(reset, RESET_INTERVAL_MS);
     return () => clearInterval(intervalId);
   }, [controls]);
 
   return (
     <motion.div
-      className="relative rounded-xl bg-white shadow-lg ring-1 ring-gray-100/50"
+      className="relative rounded-2xl bg-white shadow-xl ring-1 ring-theme-dark-navy/20"
       animate={controls}
       initial={{ opacity: 0, y: 20 }}
     >
-      <ResumeIframeCSR documentSize="Letter" scale={isLg ? 0.75 : 0.55}>
+      <ResumeIframeCSR documentSize="Letter" scale={getScale()}>
         <ResumePDF
           resume={resume}
           settings={{
             ...initialSettings,
             fontFamily: "Inter",
             fontSize: "12",
-            themeColor: "#6b46c1",
+            themeColor: "#2a9d8f", // Emerald green for resume accents
             formToHeading: {
               workExperiences: resume.workExperiences[0].company
                 ? "Work Experience"
@@ -85,7 +107,13 @@ export const AutoTypingResume = () => {
           }}
         />
       </ResumeIframeCSR>
-      <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-r from-[color:var(--theme-purple)]/10 to-[color:var(--theme-blue)]/10 opacity-30" />
+      <motion.div
+        className="absolute right-4 top-4 h-2 w-2 rounded-full bg-theme-emerald"
+        animate={cursorControls}
+        initial={{ opacity: 1 }}
+      />
+      <div className="absolute inset-0 rounded-2xl bg-theme-emerald/5 pointer-events-none" />
+      <div className="absolute -inset-1 rounded-2xl bg-theme-gold/10 blur-xl opacity-20" />
     </motion.div>
   );
 };
