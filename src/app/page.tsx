@@ -8,7 +8,7 @@ import { Testimonials } from "home/Testimonials";
 export default function Home() {
   return (
     <motion.main
-      className="mx-auto max-w-screen-2xl bg-theme-dark-teal px-xs py-xl text-theme-light-gray sm:px-sm md:px-md lg:px-lg xl:px-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-theme-light-gray"
+      className="mx-auto max-w-screen-2xl bg-theme-dark-teal px-xs py-xl text-theme-light-gray sm:px-sm md:px-md lg:px-lg xl:px-xl focus-visible:ring-2 focus-visible:ring-theme-coral focus-visible:ring-offset-2"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
