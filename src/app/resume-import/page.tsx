@@ -3,10 +3,12 @@ import { getHasUsedAppBefore } from "lib/redux/local-storage";
 import { ResumeDropzone } from "components/ResumeDropzone";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import styles from "./ImportResume.css";
 
 export default function ImportResume() {
   const [hasUsedAppBefore, setHasUsedAppBefore] = useState(false);
   const [hasAddedResume, setHasAddedResume] = useState(false);
+
   const onFileUrlChange = (fileUrl: string) => {
     setHasAddedResume(Boolean(fileUrl));
   };
@@ -16,23 +18,23 @@ export default function ImportResume() {
   }, []);
 
   return (
-    <main>
-      <div className="mx-auto mt-14 max-w-3xl rounded-md border border-gray-200 px-10 py-10 text-center shadow-md">
+    <main className={styles.main}>
+      <div className={styles.container}>
         {!hasUsedAppBefore ? (
           <>
-            <h1 className="text-lg font-semibold text-gray-900">
-              Import data from an existing resume
+            <h1 className={styles.title}>
+              Kickstart Your Resume with an Existing File
             </h1>
             <ResumeDropzone
               onFileUrlChange={onFileUrlChange}
-              className="mt-5"
+              className={styles.dropzone}
             />
             {!hasAddedResume && (
               <>
                 <OrDivider />
                 <SectionWithHeadingAndCreateButton
-                  heading="Don't have a resume yet?"
-                  buttonText="Create from scratch"
+                  heading="Starting from scratch?"
+                  buttonText="Build a New Resume"
                 />
               </>
             )}
@@ -42,18 +44,18 @@ export default function ImportResume() {
             {!hasAddedResume && (
               <>
                 <SectionWithHeadingAndCreateButton
-                  heading="You have data saved in browser from prior session"
-                  buttonText="Continue where I left off"
+                  heading="Pick Up Where You Left Off"
+                  buttonText="Resume My Progress"
                 />
                 <OrDivider />
               </>
             )}
-            <h1 className="font-semibold text-gray-900">
-              Override data with a new resume
+            <h1 className={styles.title}>
+              Update Your Profile with a New Resume
             </h1>
             <ResumeDropzone
               onFileUrlChange={onFileUrlChange}
-              className="mt-5"
+              className={styles.dropzone}
             />
           </>
         )}
@@ -63,10 +65,10 @@ export default function ImportResume() {
 }
 
 const OrDivider = () => (
-  <div className="mx-[-2.5rem] flex items-center pb-6 pt-8" aria-hidden="true">
-    <div className="flex-grow border-t border-gray-200" />
-    <span className="mx-2 mt-[-2px] flex-shrink text-lg text-gray-400">or</span>
-    <div className="flex-grow border-t border-gray-200" />
+  <div className={styles.orDivider} aria-hidden="true">
+    <div className={styles.orDividerLine} />
+    <span className={styles.orDividerText}>or</span>
+    <div className={styles.orDividerLine} />
   </div>
 );
 
@@ -78,16 +80,11 @@ const SectionWithHeadingAndCreateButton = ({
   buttonText: string;
 }) => {
   return (
-    <>
-      <p className="font-semibold text-gray-900">{heading}</p>
-      <div className="mt-5">
-        <Link
-          href="/resume-builder"
-          className="outline-theme-blue rounded-full bg-sky-500 px-6 pb-2 pt-1.5 text-base font-semibold text-white"
-        >
-          {buttonText}
-        </Link>
-      </div>
-    </>
+    <div className={styles.actionSection}>
+      <p className={styles.subtitle}>{heading}</p>
+      <Link href="/resume-builder" className={styles.actionButton}>
+        {buttonText}
+      </Link>
+    </div>
   );
 };
