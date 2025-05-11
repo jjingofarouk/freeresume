@@ -31,7 +31,7 @@ export const Hero = () => {
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           <Link
-            href="/resume-import"
+            href="/resumebuilder"
             className="btn-primary flex items-center gap-2 rounded-xl px-8 py-3 text-base sm:text-lg"
           >
             Start Building
