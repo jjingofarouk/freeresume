@@ -36,7 +36,7 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-theme-coral inline-block rounded-xl px-6 py-3 font-semibold text-theme-black shadow-md hover:bg-theme-coral/90 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-theme-teal focus-visible:ring-offset-2 transition-all duration-300;
+    @apply bg-theme-coral inline-block rounded-xl px-6 py-3 font-semibold text-theme-black shadow-md hover:bg-theme-coral-hover hover:shadow-lg focus-visible:ring-2 focus-visible:ring-theme-teal focus-visible:ring-offset-2 transition-all duration-300;
   }
   .text-primary {
     @apply text-theme-coral font-semibold;
