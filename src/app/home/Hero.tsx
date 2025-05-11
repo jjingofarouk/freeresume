@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { FlexboxSpacer } from "components/FlexboxSpacer";
@@ -5,34 +6,34 @@ import { AutoTypingResume } from "home/AutoTypingResume";
 
 export const Hero = () => {
   return (
-    <section className="relative overflow-hidden py-16 lg:flex lg:min-h-[850px] lg:items-center lg:justify-center lg:py-24">
-      <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--theme-purple)]/10 to-[color:var(--theme-blue)]/10" />
-      <FlexboxSpacer maxWidth={80} minWidth={0} className="hidden lg:block" />
+    <section className="relative overflow-hidden py-16 lg:flex lg:min-h-[900px] lg:items-center lg:justify-center lg:py-24">
+      <div className="absolute inset-0 bg-theme-dark-teal/10" />
+      <FlexboxSpacer maxWidth={100} minWidth={0} className="hidden lg:block" />
       <motion.div
-        className="mx-auto max-w-2xl text-center lg:mx-0 lg:grow lg:text-left lg:pt-20"
+        className="mx-auto max-w-3xl text-center lg:mx-0 lg:grow lg:text-left"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <h1 className="text-primary text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-          Build Your
+        <h1 className="text-primary text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
+          Craft Your
           <br />
-          Professional Resume
+          Standout Resume
         </h1>
-        <p className="mt-4 text-lg text-gray-700 sm:mt-6 sm:text-xl lg:text-2xl">
-          Craft a standout resume with our free, open-source, and intuitive builder.
+        <p className="mt-4 text-lg text-theme-light-gray sm:mt-6 sm:text-xl lg:text-2xl xl:text-3xl">
+          Build a professional, ATS-optimized resume with our free, open-source platform.
         </p>
         <motion.div
-          className="mt-8 flex justify-center lg:mt-12 lg:justify-start"
+          className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:mt-12 lg:justify-start"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
           <Link
             href="/resume-import"
-            className="btn-primary flex items-center gap-2 text-base sm:text-lg"
+            className="btn-primary flex items-center gap-2 rounded-xl px-8 py-3 text-base sm:text-lg"
           >
-            Create Resume
+            Start Building
             <svg
               className="h-5 w-5"
               fill="none"
@@ -47,38 +48,30 @@ export const Hero = () => {
               />
             </svg>
           </Link>
-        </motion.div>
-        <p className="mt-4 text-sm text-gray-500 sm:text-base lg:mt-6">
-          No account needed to get started.
-        </p>
-        <motion.p
-          className="mt-6 text-sm text-gray-500 sm:mt-8 sm:text-base lg:mt-24"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-        >
-          Have a resume? Check its ATS compatibility with our{" "}
           <Link
             href="/resume-parser"
-            className="text-primary font-medium hover:underline underline-offset-4"
+            className="outline-theme-dark-teal inline-block rounded-xl px-8 py-3 text-base font-semibold text-theme-teal hover:bg-theme-teal/10 sm:text-lg"
           >
-            Resume Parser
+            Check ATS Score
           </Link>
-        </motion.p>
+        </motion.div>
+        <p className="mt-4 text-sm text-theme-light-gray/80 sm:text-base lg:mt-6">
+          No sign-up required. Get started instantly.
+        </p>
       </motion.div>
-      <FlexboxSpacer maxWidth={120} minWidth={60} className="hidden lg:block" />
+      <FlexboxSpacer maxWidth={150} minWidth={80} className="hidden lg:block" />
       <motion.div
         className="mt-12 flex justify-center lg:mt-0 lg:grow"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
+        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
       >
         <div className="relative">
           <AutoTypingResume />
           <motion.div
-            className="absolute inset-0 rounded-xl bg-gradient-to-r from-[color:var(--theme-purple)]/20 to-[color:var(--theme-blue)]/20 blur-xl"
-            animate={{ opacity: [0.3, 0.5, 0.3] }}
-            transition={{ repeat: Infinity, duration: 4 }}
+            className="absolute inset-0 rounded-2xl bg-theme-orange/10 blur-2xl"
+            animate={{ opacity: [0.2, 0.4, 0.2] }}
+            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
           />
         </div>
       </motion.div>
