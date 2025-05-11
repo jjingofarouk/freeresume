@@ -41,6 +41,8 @@ export default function ResumeParser() {
   const [textItems, setTextItems] = useState<TextItems>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   const lines = groupTextItemsIntoLines(textItems || []);
   const sections = groupLinesIntoSections(lines);
   const resume = extractResumeFromSections(sections);
@@ -65,6 +67,10 @@ export default function ResumeParser() {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   const handleDownloadReport = () => {
     const report = JSON.stringify(resume, null, 2);
     const blob = new Blob([report], { type: "application/json" });
@@ -80,8 +86,16 @@ export default function ResumeParser() {
     <div className={`resume-parser ${theme === "dark" ? "resume-parser--dark" : ""}`}>
       <div className="resume-parser__container">
         {/* Sidebar */}
-        <aside className="resume-parser__sidebar">
+        <aside className={`resume-parser__sidebar ${isSidebarOpen ? "resume-parser__sidebar--open" : ""}`}>
           <div className="resume-parser__sidebar-header">
+            <button
+              className="resume-parser__menu-toggle"
+              onClick={toggleSidebar}
+              aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+              aria-expanded={isSidebarOpen}
+            >
+              {isSidebarOpen ? "✕" : "☰"}
+            </button>
             <h1 className="resume-parser__title">Resume Parser</h1>
             <button
               onClick={toggleTheme}
@@ -91,31 +105,14 @@ export default function ResumeParser() {
               {theme === "light" ? "🌙" : "☀️"}
             </button>
           </div>
-          <nav className="resume-parser__nav">
-            <h2 className="resume-parser__subtitle">Example Resumes</h2>
-            {RESUME_EXAMPLES.map((example, idx) => (
-              <div
-                key={idx}
-                className={`resume-parser__example-card ${fileUrl === example.fileUrl ? "resume-parser__example-card--active" : ""}`}
-                onClick={() => setFileUrl(example.fileUrl)}
-                onKeyDown={(e) => {
-                  if (["Enter", " "].includes(e.key)) setFileUrl(example.fileUrl);
-                }}
-                tabIndex={0}
-                role="button"
-                aria-label={`Select Resume Example ${idx + 1}`}
-              >
-                <h3 className="resume-parser__example-title">Resume Example {idx + 1}</h3>
-                <p className="resume-parser__example-description">{example.description}</p>
-              </div>
-            ))}
+          <div className="resume-parser__sidebar-content">
             <div className="resume-parser__dropzone">
               <ResumeDropzone
                 onFileUrlChange={(url) => setFileUrl(url || defaultFileUrl)}
                 playgroundView={true}
               />
             </div>
-          </nav>
+          </div>
         </aside>
 
         {/* Main Content */}
@@ -135,6 +132,31 @@ export default function ResumeParser() {
             <Paragraph className="resume-parser__description">
               Explore the FreeResume resume parser's capabilities by selecting an example resume or uploading your own. The parser extracts key information, helping you understand how well your resume is formatted for Application Tracking Systems (ATS).
             </Paragraph>
+
+            {/* Example Resumes Section */}
+            <section className="resume-parser__examples">
+              <Heading level={2} className="resume-parser__section-title">
+                Example Resumes
+              </Heading>
+              <div className="resume-parser__example-list">
+                {RESUME_EXAMPLES.map((example, idx) => (
+                  <div
+                    key={idx}
+                    className={`resume-parser__example-card ${fileUrl === example.fileUrl ? "resume-parser__example-card--active" : ""}`}
+                    onClick={() => setFileUrl(example.fileUrl)}
+                    onKeyDown={(e) => {
+                      if (["Enter", " "].includes(e.key)) setFileUrl(example.fileUrl);
+                    }}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`Select Resume Example ${idx + 1}`}
+                  >
+                    <h3 className="resume-parser__example-title">Resume Example {idx + 1}</h3>
+                    <p className="resume-parser__example-description">{example.description}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
             {/* PDF Viewer */}
             <div className="resume-parser__pdf-container">
