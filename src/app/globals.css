@@ -9,7 +9,7 @@
     --theme-dark-teal: #1a535c;
     --theme-teal: #4a8e96;
     --theme-teal-dark: #163f45;
-    --theme-orange: #f97316; /* Bright orange for accent */
+    --theme-coral: #ff6b6b;
     --theme-light-gray: #e5e7eb;
     --theme-black: #1f2937;
     --spacing-xs: 8px;
@@ -28,17 +28,21 @@
       --theme-black: #111827;
     }
   }
+
+  body {
+    @apply bg-theme-dark-teal text-theme-light-gray;
+  }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-theme-orange inline-block rounded-xl px-6 py-3 font-semibold text-theme-black shadow-md hover:bg-theme-orange/90 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-theme-teal focus-visible:ring-offset-2 transition-all duration-300;
+    @apply bg-theme-coral inline-block rounded-xl px-6 py-3 font-semibold text-theme-black shadow-md hover:bg-theme-coral/90 hover:shadow-lg focus-visible:ring-2 focus-visible:ring-theme-teal focus-visible:ring-offset-2 transition-all duration-300;
   }
   .text-primary {
-    @apply text-theme-orange font-semibold;
+    @apply text-theme-coral font-semibold;
   }
   .bg-primary {
-    @apply bg-theme-orange text-theme-black;
+    @apply bg-theme-coral text-theme-black;
   }
   .outline-theme-dark-teal {
     @apply hover:ring-2 hover:ring-theme-teal-dark focus-visible:ring-2 focus-visible:ring-theme-teal-dark focus-visible:ring-offset-2 transition-all duration-300;
