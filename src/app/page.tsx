@@ -8,31 +8,31 @@ import { Testimonials } from "home/Testimonials";
 export default function Home() {
   return (
     <motion.main
-      className="mx-auto max-w-screen-2xl bg-theme-dark-blue px-xs py-xl text-theme-gray sm:px-sm md:px-md lg:px-lg xl:px-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-theme-gray"
-      initial={{ opacity:0 }}
-      animate={{ opacity:1 }}
-      transition={{ duration:0.5 }}
+      className="mx-auto max-w-screen-2xl bg-theme-dark-teal px-xs py-xl text-theme-light-gray sm:px-sm md:px-md lg:px-lg xl:px-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-theme-light-gray"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
       tabIndex={0}
     >
       <Hero />
       <motion.div
-        initial={{ opacity:0, y:20 }}
-        animate={{ opacity:1, y:0 }}
-        transition={{ delay:0.2, duration:0.5 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
       >
         <Steps />
       </motion.div>
       <motion.div
-        initial={{ opacity:0, y:20 }}
-        animate={{ opacity:1, y:0 }}
-        transition={{ delay:0.4, duration:0.5 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
       >
         <Features />
       </motion.div>
       <motion.div
-        initial={{ opacity:0, y:20 }}
-        animate={{ opacity:1, y:0 }}
-        transition={{ delay:0.6, duration:0.5 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
       >
         <Testimonials />
       </motion.div>
