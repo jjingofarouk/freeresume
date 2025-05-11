@@ -18,16 +18,16 @@ export default function ImportResume() {
   }, []);
 
   return (
-    <main className={styles.main}>
-      <div className={styles.container}>
+    <main className="main">
+      <div className="container">
         {!hasUsedAppBefore ? (
           <>
-            <h1 className={styles.title}>
+            <h1 className="title">
               Kickstart Your Resume with an Existing File
             </h1>
             <ResumeDropzone
               onFileUrlChange={onFileUrlChange}
-              className={styles.dropzone}
+              className="dropzone"
             />
             {!hasAddedResume && (
               <>
@@ -50,12 +50,12 @@ export default function ImportResume() {
                 <OrDivider />
               </>
             )}
-            <h1 className={styles.title}>
+            <h1 className="title">
               Update Your Profile with a New Resume
             </h1>
             <ResumeDropzone
               onFileUrlChange={onFileUrlChange}
-              className={styles.dropzone}
+              className="dropzone"
             />
           </>
         )}
@@ -65,10 +65,10 @@ export default function ImportResume() {
 }
 
 const OrDivider = () => (
-  <div className={styles.orDivider} aria-hidden="true">
-    <div className={styles.orDividerLine} />
-    <span className={styles.orDividerText}>or</span>
-    <div className={styles.orDividerLine} />
+  <div className="or-divider" aria-hidden="true">
+    <div className="or-divider-line" />
+    <span className="or-divider-text">or</span>
+    <div className="or-divider-line" />
   </div>
 );
 
@@ -80,9 +80,9 @@ const SectionWithHeadingAndCreateButton = ({
   buttonText: string;
 }) => {
   return (
-    <div className={styles.actionSection}>
-      <p className={styles.subtitle}>{heading}</p>
-      <Link href="/resume-builder" className={styles.actionButton}>
+    <div className="action-section">
+      <p className="subtitle">{heading}</p>
+      <Link href="/resume-builder" className="action-button">
         {buttonText}
       </Link>
     </div>
