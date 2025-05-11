@@ -16,12 +16,12 @@ export const Hero = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <h1 className="text-primary text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl">
-          Craft Your
+          Create Your
           <br />
-          Standout Resume
+          Professional Resume
         </h1>
         <p className="mt-4 text-lg text-theme-light-gray sm:mt-6 sm:text-xl lg:text-2xl xl:text-3xl">
-          Build a professional, ATS-optimized resume with our free, open-source platform.
+          Build an ATS-optimized, standout resume with our free, open-source platform.
         </p>
         <motion.div
           className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:gap-6 lg:mt-12 lg:justify-start"
@@ -33,7 +33,7 @@ export const Hero = () => {
             href="/resume-import"
             className="btn-primary flex items-center gap-2 rounded-xl px-8 py-3 text-base sm:text-lg"
           >
-            Start Building
+            Start Now
             <svg
               className="h-5 w-5"
               fill="none"
@@ -50,13 +50,13 @@ export const Hero = () => {
           </Link>
           <Link
             href="/resume-parser"
-            className="outline-theme-dark-teal inline-block rounded-xl px-8 py-3 text-base font-semibold text-theme-teal hover:bg-theme-teal/10 sm:text-lg"
+            className="outline-theme-dark-teal inline-block rounded-xl px-8 py-3 text-base font-semibold text-theme-coral hover:bg-theme-coral/10 sm:text-lg"
           >
-            Check ATS Score
+            Analyze Resume
           </Link>
         </motion.div>
         <p className="mt-4 text-sm text-theme-light-gray/80 sm:text-base lg:mt-6">
-          No sign-up required. Get started instantly.
+          No account needed. Begin instantly.
         </p>
       </motion.div>
       <FlexboxSpacer maxWidth={150} minWidth={80} className="hidden lg:block" />
@@ -69,7 +69,7 @@ export const Hero = () => {
         <div className="relative">
           <AutoTypingResume />
           <motion.div
-            className="absolute inset-0 rounded-2xl bg-theme-orange/10 blur-2xl"
+            className="absolute inset-0 rounded-2xl bg-theme-coral/10 blur-2xl"
             animate={{ opacity: [0.2, 0.4, 0.2] }}
             transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
           />
