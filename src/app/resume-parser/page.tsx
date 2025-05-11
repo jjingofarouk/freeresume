@@ -9,7 +9,7 @@ import { ResumeDropzone } from "components/ResumeDropzone";
 import { Heading, Link, Paragraph } from "components/documentation";
 import { ResumeTable } from "resume-parser/ResumeTable";
 import { ResumeParserAlgorithmArticle } from "resume-parser/ResumeParserAlgorithmArticle";
-import "./ResumeParser.css";
+import "./ResumeParserMain.css";
 
 const RESUME_EXAMPLES = [
   {
