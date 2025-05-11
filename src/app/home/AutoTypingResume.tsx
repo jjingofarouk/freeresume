@@ -38,15 +38,17 @@ export const AutoTypingResume = () => {
     return 0.45;
   };
 
-  const triggerScroll = async () => {
+  const triggerScroll = () => {
     if (scrollContainerRef.current && !hasScrolled.current) {
       const container = scrollContainerRef.current;
       const scrollHeight = container.scrollHeight - container.clientHeight;
-      await controls.start({
-        scrollTop: scrollHeight,
-        transition: { duration: SCROLL_DURATION / 1000, ease: "easeInOut" },
+      container.scrollTo({
+        top: scrollHeight,
+        behavior: "smooth",
       });
-      hasScrolled.current = true;
+      setTimeout(() => {
+        hasScrolled.current = true;
+      }, SCROLL_DURATION);
     }
   };
 
@@ -66,8 +68,8 @@ export const AutoTypingResume = () => {
         setResume(END_HOME_RESUME);
         hasSetEndResume.current = true;
         isPaused.current = true;
-        setTimeout(async () => {
-          await triggerScroll();
+        setTimeout(() => {
+          triggerScroll();
           isPaused.current = false;
         }, PAUSE_DURATION_MS);
       }
