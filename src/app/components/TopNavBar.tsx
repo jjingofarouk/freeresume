@@ -13,23 +13,28 @@ export const TopNavBar = () => {
     <header
       aria-label="Site Header"
       className={cx(
-        "flex h-[var(--top-nav-bar-height)] items-center border-b-2 border-gray-100 px-3 lg:px-12",
+        "sticky top-0 z-50 flex h-[var(--top-nav-bar-height)] items-center border-b border-theme-light-gray/20 bg-theme-dark-teal/95 px-4 backdrop-blur-md sm:px-6 lg:px-12",
         isHomePage && "bg-dot"
       )}
     >
-      <div className="flex h-10 w-full items-center justify-between">
-        <Link href="/">
+      <div className="flex w-full items-center justify-between">
+        <Link href="/" className="flex items-center gap-3">
           <span className="sr-only">FreeResume</span>
           <Image
             src={logoSrc}
             alt="FreeResume Logo"
-            className="h-8 w-full"
+            className="h-10 w-10 rounded-full object-cover"
             priority
+            width={40}
+            height={40}
           />
+          <span className="hidden text-lg font-semibold text-theme-light-gray sm:block">
+            FreeResume
+          </span>
         </Link>
         <nav
           aria-label="Site Nav Bar"
-          className="flex items-center gap-2 text-sm font-medium"
+          className="flex items-center gap-4 text-sm font-medium"
         >
           {[
             ["/resumebuilder", "Builder"],
@@ -37,13 +42,24 @@ export const TopNavBar = () => {
           ].map(([href, text]) => (
             <Link
               key={text}
-              className="rounded-md px-1.5 py-2 text-gray-500 hover:bg-gray-100 focus-visible:bg-gray-100 lg:px-4"
               href={href}
+              className={cx(
+                "rounded-xl px-3 py-2 text-theme-light-gray/80 outline-theme-dark-teal transition-all duration-200",
+                pathName === href
+                  ? "bg-theme-teal/20 text-theme-light-gray"
+                  : "hover:bg-theme-teal/10 hover:text-theme-light-gray"
+              )}
             >
               {text}
             </Link>
           ))}
-          <div className="ml-1 mt-1">
+          <Link
+            href="/get-started"
+            className="btn-primary hidden rounded-xl px-4 py-2 text-sm sm:block"
+          >
+            Get Started
+          </Link>
+          <div className="ml-2">
             <iframe
               src="https://ghbtns.com/github-btn.html?user=jjingofarouk&repo=freeresume&type=star&count=true"
               width="100"
