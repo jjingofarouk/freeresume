@@ -3,7 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { LucideIcon, Lock, Globe, FileText, Shield } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { CSS_VARIABLES } from "../global-css";
+import { CSS_VARIABLES } from "global-css";
 
 interface Feature {
   icon: LucideIcon;
