@@ -4,7 +4,7 @@
   z-index: 10;
   width: 40px;
   height: 40px;
-  background: var(--theme-emerald);
+  background: var(--theme-purple);
   border-radius: 50%;
   display: flex !important;
   align-items: center;
@@ -16,7 +16,7 @@
 
 .slick-prev:hover,
 .slick-next:hover {
-  background: var(--theme-gold);
+  background: var(--theme-blue);
 }
 
 .slick-prev {
@@ -37,5 +37,5 @@
 }
 
 .slick-dots li.slick-active button:before {
-  color: var(--theme-emerald);
+  color: var(--theme-purple);
 }
