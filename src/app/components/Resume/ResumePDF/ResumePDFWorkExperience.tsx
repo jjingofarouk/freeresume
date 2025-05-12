@@ -17,30 +17,78 @@ export const ResumePDFWorkExperience = ({
   themeColor: string;
 }) => {
   return (
-    <ResumePDFSection themeColor={themeColor} heading={heading}>
+    <ResumePDFSection 
+      themeColor={themeColor} 
+      heading={heading}
+      style={{ 
+        backgroundColor: '#f1f5f9', // --theme-light-gray
+        padding: spacing["2"],
+        borderRadius: 4,
+      }}
+    >
       {workExperiences.map(({ company, jobTitle, date, descriptions }, idx) => {
-        // Hide company name if it is the same as the previous company
         const hideCompanyName =
           idx > 0 && company === workExperiences[idx - 1].company;
 
         return (
-          <View key={idx} style={idx !== 0 ? { marginTop: spacing["2"] } : {}}>
+          <View 
+            key={idx} 
+            style={{ 
+              marginTop: idx !== 0 ? spacing["2"] : 0,
+              padding: spacing["1"],
+              backgroundColor: hideCompanyName ? 'transparent' : '#ffffff',
+              borderLeft: `2px solid ${themeColor}`,
+              borderRadius: 2,
+            }}
+          >
             {!hideCompanyName && (
-              <ResumePDFText bold={true}>{company}</ResumePDFText>
+              <ResumePDFText 
+                bold={true}
+                style={{ 
+                  color: '#1b263b', // --theme-navy
+                  fontSize: 12,
+                  marginBottom: spacing["0.5"],
+                }}
+              >
+                {company}
+              </ResumePDFText>
             )}
             <View
               style={{
                 ...styles.flexRowBetween,
-                marginTop: hideCompanyName
-                  ? "-" + spacing["1"]
-                  : spacing["1.5"],
+                marginTop: hideCompanyName ? 0 : spacing["1"],
+                paddingBottom: spacing["0.5"],
+                borderBottom: `1px solid #e2e8f0`, // --theme-light-gray (dark mode)
               }}
             >
-              <ResumePDFText>{jobTitle}</ResumePDFText>
-              <ResumePDFText>{date}</ResumePDFText>
+              <ResumePDFText 
+                style={{ 
+                  color: '#2a9d8f', // --theme-emerald
+                  fontSize: 10,
+                  fontWeight: 'medium',
+                }}
+              >
+                {jobTitle}
+              </ResumePDFText>
+              <ResumePDFText 
+                style={{ 
+                  color: '#0f172a', // --theme-black
+                  fontSize: 9,
+                  opacity: 0.8,
+                }}
+              >
+                {date}
+              </ResumePDFText>
             </View>
-            <View style={{ ...styles.flexCol, marginTop: spacing["1.5"] }}>
-              <ResumePDFBulletList items={descriptions} />
+            <View style={{ ...styles.flexCol, marginTop: spacing["1"] }}>
+              <ResumePDFBulletList 
+                items={descriptions}
+                style={{ 
+                  color: '#0f172a', // --theme-black
+                  fontSize: 9,
+                  lineHeight: 1.4,
+                }}
+              />
             </View>
           </View>
         );
