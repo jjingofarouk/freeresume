@@ -1,6 +1,7 @@
 // src/app/home/Steps.tsx
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { useRef } from "react";
 
 const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player), {
   ssr: false,
@@ -25,6 +26,8 @@ const STEPS = [
 ];
 
 export const Steps = () => {
+  const playerRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   return (
     <section className="bg-theme-navy py-[var(--spacing-xl)]">
       <motion.h1
@@ -54,6 +57,9 @@ export const Steps = () => {
                     loop
                     src={lottieSrc}
                     style={{ height: "100%", width: "100%" }}
+                    getContainer={(el) => {
+                      playerRefs.current[idx] = el;
+                    }}
                   />
                 </div>
                 <h3 className="mt-[var(--spacing-sm)] text-xl font-semibold text-theme-light-gray">
