@@ -5,8 +5,11 @@ import heartSrc from "public/assets/heart.svg";
 import testimonialSpiegelSrc from "public/assets/testimonial-spiegel.jpg";
 import testimonialSantiSrc from "public/assets/testimonial-santi.jpg";
 import testimonialVivianSrc from "public/assets/testimonial-vivian.jpg";
-import React, { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useTailwindBreakpoints } from "lib/hooks/useTailwindBreakpoints";
+import "./carousel.css"
 
 const TESTIMONIALS = [
   {
@@ -32,27 +35,22 @@ const TESTIMONIALS = [
   },
 ];
 
-const ROTATION_INTERVAL_MS = 8 * 1000; // 8s
-
 export const Testimonials = ({ children }: { children?: React.ReactNode }) => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const isHoveredOnTestimonial = useRef(false);
-  const controls = useAnimation();
   const { isLg } = useTailwindBreakpoints();
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (!isHoveredOnTestimonial.current) {
-        setActiveIndex((prev) => (prev + 1) % TESTIMONIALS.length);
-        controls.start({
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.5 },
-        });
-      }
-    }, ROTATION_INTERVAL_MS);
-    return () => clearInterval(intervalId);
-  }, [controls]);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 8000,
+    arrows: isLg,
+    adaptiveHeight: true,
+    prevArrow: <button className="slick-prev">←</button>,
+    nextArrow: <button className="slick-next">→</button>,
+  };
 
   return (
     <section className="mx-auto py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
@@ -66,18 +64,16 @@ export const Testimonials = ({ children }: { children?: React.ReactNode }) => {
         <Image src={heartSrc} alt="love" className="w-8 h-8 text-primary" />
       </motion.h2>
       <div className="mx-auto mt-12 max-w-4xl px-6">
-        <div className="relative">
+        <Slider {...settings}>
           {TESTIMONIALS.map(({ src, quote, name, title }, idx) => (
             <motion.div
               key={idx}
-              className={`absolute inset-0 rounded-2xl bg-white shadow-lg border border-gray-100 transition-all duration-500 ${
-                idx === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-              animate={controls}
-              onMouseEnter={() => (isHoveredOnTestimonial.current = true)}
-              onMouseLeave={() => (isHoveredOnTestimonial.current = false)}
+              className="rounded-2xl bg-white shadow-lg border border-gray-100 p-6 lg:p-8"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
             >
-              <figure className="flex flex-col sm:flex-row items-center gap-6 p-6 lg:p-8 text-gray-900">
+              <figure className="flex flex-col sm:flex-row items-center gap-6 text-gray-900">
                 <Image
                   className="h-20 w-20 rounded-full object-cover border-2 border-[color:var(--theme-purple)]/20"
                   src={src}
@@ -101,23 +97,7 @@ export const Testimonials = ({ children }: { children?: React.ReactNode }) => {
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[color:var(--theme-purple)]/5 to-[color:var(--theme-blue)]/5 opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
-        </div>
-        {isLg && (
-          <div className="flex justify-center mt-8 gap-2">
-            {TESTIMONIALS.map((_, idx) => (
-              <button
-                key={idx}
-                className={`h-2 w-2 rounded-full transition-all duration-300 ${
-                  idx === activeIndex ? "bg-primary w-4" : "bg-gray-300"
-                }`}
-                onClick={() => {
-                  setActiveIndex(idx);
-                  controls.start({ opacity: 1, y: 0, transition: { duration: 0.5 } });
-                }}
-              />
-            ))}
-          </div>
-        )}
+        </Slider>
       </div>
       {children}
     </section>
