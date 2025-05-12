@@ -5,8 +5,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { useRef } from "react";
+import "./carousel.css";
 
-// Dynamic import for Lottie player
 const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then((mod) => mod.Player), {
   ssr: false,
 });
@@ -32,7 +32,6 @@ const STEPS = [
 export const Steps = () => {
   const sliderRef = useRef<Slider | null>(null);
 
-  // Slick carousel settings
   const settings = {
     dots: true,
     infinite: true,
