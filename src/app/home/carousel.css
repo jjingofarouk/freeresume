@@ -1,0 +1,41 @@
+/* src/styles/carousel.css */
+.slick-prev,
+.slick-next {
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  background: var(--theme-emerald);
+  border-radius: 50%;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  color: var(--theme-black);
+  font-size: 1.5rem;
+  transition: background 0.3s;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: var(--theme-gold);
+}
+
+.slick-prev {
+  left: -50px;
+}
+
+.slick-next {
+  right: -50px;
+}
+
+.slick-dots {
+  margin-top: var(--spacing-md);
+}
+
+.slick-dots li button:before {
+  color: var(--theme-light-gray);
+  font-size: 12px;
+}
+
+.slick-dots li.slick-active button:before {
+  color: var(--theme-emerald);
+}
