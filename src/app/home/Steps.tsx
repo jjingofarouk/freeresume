@@ -57,7 +57,7 @@ export const Steps = () => {
                     loop
                     src={lottieSrc}
                     style={{ height: "100%", width: "100%" }}
-                    getContainer={(el) => {
+                    ref={(el) => {
                       playerRefs.current[idx] = el;
                     }}
                   />
