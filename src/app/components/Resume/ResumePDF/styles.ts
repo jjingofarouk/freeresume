@@ -44,22 +44,52 @@ export const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     gap: spacing[2],
+    alignItems: "center",
   },
   flexRowBetween: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    paddingVertical: spacing[0.5],
   },
   flexCol: {
     display: "flex",
     flexDirection: "column",
-    gap: spacing[3],
+    gap: spacing[2], // Reduced gap for tighter grouping
   },
   icon: {
-    width: "14pt",
-    height: "14pt",
-    fill: "#5D5D5D", // Matches theme-gray for a clean, neutral look
+    width: "12pt",
+    height: "12pt",
+    fill: "#1b263b", // --theme-navy for consistency with global theme
+    opacity: 0.9, // Slightly higher opacity for better visibility
+  },
+  section: {
+    backgroundColor: "#f1f5f9", // --theme-light-gray
+    borderRadius: 4,
+    padding: spacing[3],
+    marginBottom: spacing[4],
+  },
+  card: {
+    backgroundColor: "#ffffff",
+    borderLeft: "2px solid #2a9d8f", // --theme-emerald
+    padding: spacing[2],
+    borderRadius: 2,
+    marginBottom: spacing[2],
+  },
+  textPrimary: {
+    color: "#2a9d8f", // --theme-emerald
+    fontSize: 10,
+    fontWeight: "medium",
+  },
+  textSecondary: {
+    color: "#0f172a", // --theme-black
+    fontSize: 9,
     opacity: 0.85,
+  },
+  textHeading: {
+    color: "#1b263b", // --theme-navy
+    fontSize: 12,
+    fontWeight: "bold",
   },
 });
