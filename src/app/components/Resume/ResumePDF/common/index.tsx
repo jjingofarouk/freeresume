@@ -39,7 +39,7 @@ export const ResumePDFSection = ({
         <Text
           style={{
             fontWeight: "bold",
-            letterSpacing: "0.3pt", // tracking-wide -> 0.025em * 12 pt = 0.3pt
+            letterSpacing: "0.3pt",
           }}
           debug={DEBUG_RESUME_PDF_FLAG}
         >
@@ -79,9 +79,11 @@ export const ResumePDFText = ({
 export const ResumePDFBulletList = ({
   items,
   showBulletPoints = true,
+  style = {},
 }: {
   items: string[];
   showBulletPoints?: boolean;
+  style?: Style;
 }) => {
   return (
     <>
@@ -99,10 +101,13 @@ export const ResumePDFBulletList = ({
               {"•"}
             </ResumePDFText>
           )}
-          {/* A breaking change was introduced causing text layout to be wider than node's width
-              https://github.com/diegomura/react-pdf/issues/2182. flexGrow & flexBasis fixes it */}
           <ResumePDFText
-            style={{ lineHeight: "1.3", flexGrow: 1, flexBasis: 0 }}
+            style={{ 
+              lineHeight: "1.3", 
+              flexGrow: 1, 
+              flexBasis: 0,
+              ...style 
+            }}
           >
             {item}
           </ResumePDFText>
