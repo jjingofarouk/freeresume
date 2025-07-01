@@ -21,7 +21,7 @@ export const ResumePDFWorkExperience = ({
       themeColor={themeColor} 
       heading={heading}
       style={{ 
-        backgroundColor: '#f1f5f9', // --theme-light-gray
+        backgroundColor: '#f1f5f9',
         padding: spacing["2"],
         borderRadius: 4,
       }}
@@ -45,7 +45,7 @@ export const ResumePDFWorkExperience = ({
               <ResumePDFText 
                 bold={true}
                 style={{ 
-                  color: '#1b263b', // --theme-navy
+                  color: '#1b263b',
                   fontSize: 12,
                   marginBottom: spacing["0.5"],
                 }}
@@ -58,12 +58,12 @@ export const ResumePDFWorkExperience = ({
                 ...styles.flexRowBetween,
                 marginTop: hideCompanyName ? 0 : spacing["1"],
                 paddingBottom: spacing["0.5"],
-                borderBottom: `1px solid #e2e8f0`, // --theme-light-gray (dark mode)
+                borderBottom: `1px solid #e2e8f0`,
               }}
             >
               <ResumePDFText 
                 style={{ 
-                  color: '#2a9d8f', // --theme-emerald
+                  color: '#2a9d8f',
                   fontSize: 10,
                   fontWeight: 'medium',
                 }}
@@ -72,7 +72,7 @@ export const ResumePDFWorkExperience = ({
               </ResumePDFText>
               <ResumePDFText 
                 style={{ 
-                  color: '#0f172a', // --theme-black
+                  color: '#0f172a',
                   fontSize: 9,
                   opacity: 0.8,
                 }}
@@ -83,11 +83,7 @@ export const ResumePDFWorkExperience = ({
             <View style={{ ...styles.flexCol, marginTop: spacing["1"] }}>
               <ResumePDFBulletList 
                 items={descriptions}
-                style={{ 
-                  color: '#0f172a', // --theme-black
-                  fontSize: 9,
-                  lineHeight: 1.4,
-                }}
+                showBulletPoints={true}
               />
             </View>
           </View>
